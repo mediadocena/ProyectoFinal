@@ -8,13 +8,15 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { PortfolioComponent } from './Components/portfolio/portfolio.component'
+import { PortfolioComponent } from './Components/portfolio/portfolio.component';
+import { UserComponent } from './Components/user/user.component'
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
