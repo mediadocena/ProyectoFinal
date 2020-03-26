@@ -15,8 +15,13 @@ export class LoginComponent implements OnInit {
 
   }
   login(){
-    this.user.login(this.email,this.password).subscribe((data) => {
+    this.user.login(this.email,this.password).subscribe((data:any) => {
       console.log(data)
+      let id = data._id
+      id = id.$oid
+      console.log(id)
+      //Guardamos token
+      localStorage.setItem('token',JSON.stringify(data))
     })
   }
 
