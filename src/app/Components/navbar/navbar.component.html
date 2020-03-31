@@ -6,7 +6,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="/login"><i class="fas fa-user"></i>User</a>
       </li>
@@ -14,6 +14,31 @@
         <a class="nav-link" href="#"><i class="fas fa-search"></i>Explore</a>
       </li>
     </ul>
+    <div [ngSwitch]="logged">
+    <div *ngSwitchCase="true">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item avatar">
+          <!--<a class="nav-link p-0" href="/User">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+              alt="avatar image" height="35">
+          </a>-->
+          <div class="dropdown derecha">
+          <img src="{{icono}}" class="rounded-circle z-depth-0"
+              data-toggle="dropdown" alt="avatar image" height="35">
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="CrearPost" >Crear Post</a>
+              <div *ngIf='rol == "admin"'>
+                <a class="dropdown-item" href="CrearNoticia" >Publicar noticia</a>
+                <a class="dropdown-item" href="CrearAdmin" >Crear admin</a>
+              </div>
+              <a class="dropdown-item" href="/Settings">Ajustes</a>
+              <a class="dropdown-item" (click)='delogin()'>Log out</a>
+          </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
   </div>
 </nav>
 </div>

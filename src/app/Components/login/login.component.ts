@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
       let id = data._id
       id = id.$oid
       console.log(id)
-      //Guardamos token
       localStorage.setItem('token',JSON.stringify(data))
     })
   }
