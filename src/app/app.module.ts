@@ -16,6 +16,7 @@ import { IsloggedService } from './Services/islogged.service';
 import { RoleGuardService } from './Services/roleguard.service';
 import { WrongRouteComponent } from './Components/wrong-route/wrong-route.component';
 import { HomeComponent } from './Components/home/home.component';
+import { PostformComponent } from './Components/postform/postform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { HomeComponent } from './Components/home/home.component';
     PortfolioComponent,
     UserComponent,
     WrongRouteComponent,
-    HomeComponent
+    HomeComponent,
+    PostformComponent
   ],
   imports: [
     BrowserModule,

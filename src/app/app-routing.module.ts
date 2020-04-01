@@ -6,13 +6,15 @@ import { UserComponent } from './Components/user/user.component';
 import { IsloggedService } from './Services/islogged.service';
 import { WrongRouteComponent } from './Components/wrong-route/wrong-route.component';
 import { HomeComponent } from './Components/home/home.component';
+import { PostformComponent } from './Components/postform/postform.component';
 
 
 const routes: Routes = [
-{path:'login', component:LoginComponent/*,canActivate:[IsloggedService]*/},
+{path:'login', component:LoginComponent,canActivate:[IsloggedService]},
   {path:'portfolio/:id',component:PortfolioComponent},
   {path:'user',component:UserComponent},
   {path:'Home',component:HomeComponent},
+  {path:'AñadirTrabajo',component:PostformComponent},
   {path: '', redirectTo: '/Home',pathMatch: 'full'},
   {
     path        : '**',

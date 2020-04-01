@@ -7,10 +7,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UserService {
 
   constructor(private http:HttpClient){
-    
+    if(JSON.parse(localStorage.getItem('token'))){
+      this.token = JSON.parse(localStorage.getItem('token')).access_token;
+    }else{
+      this.token = ''
+    }
     
   }
-   token = JSON.parse(localStorage.getItem('token')).access_token;
+   token; 
    httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

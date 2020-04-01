@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
       id = id.$oid
       console.log(id)
       localStorage.setItem('token',JSON.stringify(data))
+      window.location.reload();
+    },(err)=>{
+      
     })
   }
 
