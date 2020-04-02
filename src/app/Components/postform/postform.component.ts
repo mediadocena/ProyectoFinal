@@ -9,14 +9,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PostformComponent implements OnInit {
   uploadForm:FormGroup;
-  token;
+  token:any = JSON.parse(localStorage.getItem('token'));;
   
   constructor(private formBuilder:FormBuilder,private httpClient:HttpClient) { 
-    this.token = JSON.parse(localStorage.getItem('token')).access_token;
+    console.log(this.token._id.$oid)
   }
   httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${this.token.access_token}`
     })
   };
 
@@ -25,7 +25,7 @@ export class PostformComponent implements OnInit {
       file: [''],
       titulo: [''],
       text:[''],
-      author:['']
+      author:this.token._id.$oid
     });
   }
   onFileSelect(event) {

@@ -12,9 +12,9 @@ import { PostformComponent } from './Components/postform/postform.component';
 const routes: Routes = [
 {path:'login', component:LoginComponent,canActivate:[IsloggedService]},
   {path:'portfolio/:id',component:PortfolioComponent},
-  {path:'user',component:UserComponent},
+  {path:'user',component:UserComponent,canActivate:[IsloggedService]},
   {path:'Home',component:HomeComponent},
-  {path:'AñadirTrabajo',component:PostformComponent},
+  {path:'AñadirTrabajo',component:PostformComponent,canActivate:[IsloggedService]},
   {path: '', redirectTo: '/Home',pathMatch: 'full'},
   {
     path        : '**',
