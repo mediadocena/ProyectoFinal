@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { LoginComponent } from './Components/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { PortfolioComponent } from './Components/portfolio/portfolio.component';
 import { UserComponent } from './Components/user/user.component'
@@ -34,7 +34,7 @@ import { PostformComponent } from './Components/postform/postform.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    
+    ReactiveFormsModule
     
   ],
   providers: [
