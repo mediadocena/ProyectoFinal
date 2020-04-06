@@ -7,6 +7,7 @@ import { IsloggedService } from './Services/islogged.service';
 import { WrongRouteComponent } from './Components/wrong-route/wrong-route.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PostformComponent } from './Components/postform/postform.component';
+import { SigninComponent } from './Components/signin/signin.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'user',component:UserComponent,canActivate:[IsloggedService]},
   {path:'Home',component:HomeComponent},
   {path:'AñadirTrabajo',component:PostformComponent,canActivate:[IsloggedService]},
+  {path:'signin',component:SigninComponent,canActivate:[IsloggedService]},
   {path: '', redirectTo: '/Home',pathMatch: 'full'},
   {
     path        : '**',

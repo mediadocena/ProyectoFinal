@@ -2,7 +2,7 @@
 <br>
 <form class="text-center border border-light p-5 block" action="#!">
 
-    <p class="h4 mb-4">Log in</p>
+    <p class="h4 mb-4">Sign in</p>
 
     <!-- Email -->
     <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
@@ -10,6 +10,11 @@
     <!-- Password -->
     <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
 
+    <!-- Repeat password -->
+    <input [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" type="password" id="defaultLoginFormPassword2" class="form-control mb-4" placeholder="Repeat password">
+
+    <input type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Username">
+    
     <div class="d-flex justify-content-around">
         <div>
             <!-- Remember me -->
@@ -29,7 +34,7 @@
 
     <!-- Register -->
     <p>Not a member?
-        <a href="/signin">Register</a>
+        <a href="">Register</a>
     </p>
 
     <!-- Social login -->

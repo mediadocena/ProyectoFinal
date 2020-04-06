@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PostService } from 'src/app/Services/post.service';
 
 @Component({
   selector: 'app-postform',
@@ -9,16 +9,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PostformComponent implements OnInit {
   uploadForm:FormGroup;
-  token:any = JSON.parse(localStorage.getItem('token'));;
+  token:any = JSON.parse(localStorage.getItem('token'));
   
-  constructor(private formBuilder:FormBuilder,private httpClient:HttpClient) { 
-    console.log(this.token._id.$oid)
+  constructor(private formBuilder:FormBuilder,private post:PostService) { 
   }
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': `Bearer ${this.token.access_token}`
-    })
-  };
+
 
   ngOnInit() {
     this.uploadForm = this.formBuilder.group({
@@ -41,10 +36,10 @@ export class PostformComponent implements OnInit {
     formData.append('text', this.uploadForm.get('text').value);
     formData.append('author', this.uploadForm.get('author').value);
     console.log(formData.get('titulo'))
-    this.httpClient.post<any>('http://127.0.0.1:5000/portfolio', formData,this.httpOptions).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
+    this.post.postData(formData).subscribe(
+      ok=>{console.log('ok')},
+      err=>{console.log('err')}
+    )
   }
 
 }
