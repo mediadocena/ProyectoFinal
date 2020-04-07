@@ -1,86 +1,44 @@
 <br>
 <div class="container">
-<div ><!--NGFOR-->
-<!-- Grid row -->
-<div class="row">
+  <div class="row">
 
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-12 mb-4">
+    <div class="col-lg-12 col-sm-4 col-md-6">
+      <div class="row">
+          <div class="col-lg-4" *ngFor="let item of data; index as i">
+      <!-- Grid column -->
   
       <!--Card Primary-->
       <div class="card light-blue darken-1 text-center z-depth-2">
        <!--Card image-->
        <div class="view">
             <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(122).jpg" class="card-img-top" alt="photo">
+            
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
             </a>
         </div>
         <div class="card-body">
-          <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>First column</strong></h3>
-          <p class="white-text mb-0">Ut enim ad minima veniam, quis nostrum exercita tionem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit
-            qui in ea voluptate non proident velit esse quam. </p>
+          <div class="media">
+          <video width="250" height="140" controls>
+            <source src="http://127.0.0.1:5000/download/video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <br>
+        <div class="media">
+          <audio controls>
+            <source src="http://127.0.0.1:5000/download/Manolo lotta love.mp3.mp3" type="audio/ogg">
+          Your browser does not support the audio element.
+            </audio>
+          </div>
+          <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>{{item.titulo}}</strong></h3>
+          <p class="white-text mb-0">{{item.texto}} </p>
         </div>
         <p class="white-text mb-0"><i class="far fa-star"></i>111&#9;<i class="far fa-comment"></i> 1222</p>
       </div>
       <!--/.Card Primary-->
-  
+      <br>
     </div>
-    <!-- Grid column -->
-  
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-4">
-  
-      <!--Card Primary-->
-      <div class="card light-blue darken-1 text-center z-depth-2">
-      <!--Card image-->
-      <div class="view">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(122).jpg" class="card-img-top" alt="photo">
-        <a href="#">
-          <div class="mask rgba-white-slight"></div>
-        </a>
       </div>
-        <div class="card-body">
-          <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>Second column</strong></h3>
-          <p class="white-text mb-0">Ut enim ad minima veniam, quis nostrum exercita tionem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit
-            qui in ea voluptate non proident velit esse quam. </p>
-            
-        </div>
-        <p class="white-text mb-0"><i class="far fa-star"></i>111 &#9;<i class="far fa-comment"></i>1222</p>
-      </div>
-      <!--/.Card Primary-->
-  
+      
     </div>
-    <!-- Grid column -->
-  
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-4">
-  
-      <!--Card Primary-->
-      <div class="card light-blue darken-1 text-center z-depth-2">
-            <!--Card image-->
-        <div class="view">
-                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(122).jpg" class="card-img-top" alt="photo">
-                <a href="#">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-        </div>
-        <div class="card-body">
-          <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>Third column</strong></h3>
-          <p class="white-text mb-0">Ut enim ad minima veniam, quis nostrum exercita tionem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit
-            qui in ea voluptate non proident velit esse quam. </p>
-        </div>
-        <p class="white-text mb-0"><i class="far fa-star"></i>111&#9;<i class="far fa-comment"></i> 1222</p>
-      </div>
-      <!--/.Card Primary-->
-  
-    </div>
-    <!-- Grid column -->
-  
   </div>
-  <!-- Grid row -->
-</div>
-</div>

@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'portfolio/:id',component:PortfolioComponent},
   {path:'user',component:UserComponent,canActivate:[IsloggedService]},
   {path:'Home',component:HomeComponent},
-  {path:'AñadirTrabajo',component:PostformComponent,canActivate:[IsloggedService]},
+  {path:'addpost',component:PostformComponent},
   {path:'signin',component:SigninComponent,canActivate:[IsloggedService]},
   {path: '', redirectTo: '/Home',pathMatch: 'full'},
   {
