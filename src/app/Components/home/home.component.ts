@@ -10,16 +10,32 @@ export class HomeComponent implements OnInit {
 
   constructor(private post:PostService) { }
 
-  data:[any]; 
+  data:any[]; 
+  fulldata:any[];
+  searchArgs:string;
 
   ngOnInit() {
-    this.ObtenerPosts()
+    this.ObtenerPosts();
   }
 
   ObtenerPosts(){
     this.post.GetAll().subscribe((data:any)=>{
       this.data = data;
+      this.fulldata = data
     })
+  }
+  Buscar(searchArgs:string){
+    if(searchArgs == '' || searchArgs == undefined || searchArgs == null){
+      this.data = this.fulldata;
+    }else{
+      this.data = [];
+      this.fulldata.forEach((dat:any) => {
+        if (dat.titulo.toLowerCase().search(this.searchArgs.toLowerCase()) != -1 ||
+          dat.autor.toLowerCase().search(this.searchArgs.toLowerCase()) != -1) {
+          this.data.push(dat);
+        }
+      })
+    }
   }
 
 }

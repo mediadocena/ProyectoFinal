@@ -1,12 +1,20 @@
 <br>
 <div class="container">
 <!-- Default form contact -->
-<form class="text-center border border-light p-5" [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-dark rounded block backwhite p-5" [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
     <p class="h4 mb-4">Añadir Trabajo</p>
     <!-- Name -->
-    <input type="text" formControlName="titulo" id="titulo" name="titulo" class="form-control mb-4" placeholder="Titulo">
-    <input type="file" (change)="onFileSelect($event)" id="file" name="file" accept=".png,.jpg,.mp4,.mp3" placeholder="Archivo">
-    <input type="text" formControlName="text" id="text" name="text" placeholder="texto">
+    <input type="text" formControlName="titulo" id="titulo" name="titulo" class="form-control mb-6" placeholder="Titulo">
+    <br>
+    <input type="file"  (change)="onFileSelect($event)" id="file" name="file" accept=".png,.jpg,.mp4,.mp3" placeholder="Archivo">
+    <br>
+    <br>
+    <select name ='Categoría' formControlName="category" class="browser-default custom-select">
+        <option value="Música">Música</option>
+        <option value="Dibujo/fotografía">Dibujo/fotografía</option>
+        <option value="Video">Video</option>
+    </select>
+    <input type="text" class="form-control mb-4" formControlName="text" id="text" name="text" placeholder="texto">
     <!-- Send button -->
     <button class="btn btn-info btn-block" type="submit">Send</button>
 </form>
