@@ -10,55 +10,48 @@
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                           </button>
-                          
+                          <div *ngIf="index!=undefined">
                           <!-- Grid row -->
                           <div class="row">
                           
                               <!-- Grid column -->
                               <div class="col-md-6 py-5 pl-5">
                                   
-                                  <h5 class="font-weight-normal mb-3">Paper cup mockup</h5>
+                                  <h5 class="font-weight-normal mb-3">{{data[index].titulo}}</h5>
   
-                                  <p class="text-muted">Key letters, explain which writing we he carpeting or fame, the itch expand medical amped through constructing time. And scarfs, gain, get showed accounts decades.</p>
+                                  <p class="text-muted">{{data[index].texto}}</p>
   
-                                  <ul class="list-unstyled font-small mt-5">
-                                      <li>
-                                          <p class="text-uppercase mb-2"><strong>Client</strong></p>
-                                          <p class="text-muted mb-4">Envato Inc.</p>
-                                      </li>
-  
-                                      <li>
-                                          <p class="text-uppercase mb-2"><strong>Date</strong></p>
-                                          <p class="text-muted mb-4">June 27, 2019</p>
-                                      </li>
-  
-                                      <li>
-                                          <p class="text-uppercase mb-2"><strong>Skills</strong></p>
-                                          <p class="text-muted mb-4">Design, HTML, CSS, Javascript</p>
-                                      </li>
-  
-                                      <li>
-                                          <p class="text-uppercase mb-2"><strong>Address</strong></p>
-                                          <a href="https://mdbootstrap.com/docs/jquery/design-blocks/">MDBootstrap</a>
-                                      </li>
-                                  </ul>
-                                  
                               </div>
                               <!-- Grid column -->
                           
                               <!-- Grid column -->
                               <div class="col-md-6">
-                                  
                                   <div class="view rounded-right">
-                                      <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/5.jpg" alt="Sample image">
+                                    <div *ngIf="data[index].category == 'Dibujo/fotografía'">
+                                      <img class="img-fluid" src={{data[index].archivo}} alt="DIbujo/fotografía">
+                                    </div>
+                                    <div *ngIf="data[index].category == 'Música'">
+                                      <div class="media">
+                                        <audio controls>
+                                          <source src={{data[index].archivo}} type="audio/ogg">
+                                        Your browser does not support the audio element.
+                                          </audio>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="data[index].category == 'Video'">
+                                      <div class="media">
+                                        <video width="250" height="140" controls>
+                                          <source src={{data[index].archivo}} type="video/mp4">
+                                        </video>
+                                      </div>
+                                    </div>
                                   </div>
-                                  
                               </div>
                               <!-- Grid column -->
                           
                           </div>
                           <!-- Grid row -->
-                          
+                      </div>
                       </div>
                   </div>
               </div>
@@ -86,69 +79,19 @@
   
       </div>
       <!-- Grid row -->
-  
-      <!-- Grid row -->
-      <div class="gallery mb-5" id="gallery">
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics all 2 animation">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 1">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/7.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 1">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/4.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics all 2 animation">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/63.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics all 2 animation">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/64.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 1">
-          <a data-toggle="modal" data-target="#basicExampleModal">
-            <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Vertical/5.jpg" alt="Card image cap">
-          </a>
-        </div>
-        <!-- Grid column -->
-
-      <!-- Grid row -->
-      </div>
-      <!-- Grid row -->
   <!-------------------------------------------------------------------------------------> 
   <!-- Grid row -->
   <div class="gallery mb-5" id="gallery">
-    <div *ngFor="let dat of data">
+    <div *ngFor="let dat of data index as i">
     <!-- Grid column -->
     <div class="mb-3 pics all 2 animation">
-      <a data-toggle="modal" data-target="#basicExampleModal">
-        <img class="img-fluid z-depth-1 rounded" src="https://mdbootstrap.com/img/Photos/Others/images/58.jpg" alt="Card image cap">
+      <a data-toggle="modal" data-target="#basicExampleModal"  (click)="ObtenerModal(i)">
+        <div *ngIf="dat.category=='Dibujo/fotografía'">
+          <img class="img-fluid z-depth-1 rounded" src={{dat.archivo}} alt="Card image cap">
+        </div>
+        <div *ngIf="dat.category!='Dibujo/fotografía'">
+          <img class="img-fluid z-depth-1 rounded" src="https://i.etsystatic.com/10919371/r/il/155a7d/1563938723/il_570xN.1563938723_1rmr.jpg" alt="">
+        </div>
       </a>
     </div>
     <!-- Grid column -->

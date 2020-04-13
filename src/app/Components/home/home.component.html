@@ -19,8 +19,11 @@
       <div class="card light-blue darken-1 text-center z-depth-2">
        <!--Card image-->
        <div class="view">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(122).jpg" class="card-img-top" alt="photo">
-           
+            <div *ngIf="item.category == 'Dibujo/fotografía'">
+              <div class="media">
+                <img  class="card-img-top" src={{item.archivo}} class="img-fluid">
+                </div>
+            </div>
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
             </a>
@@ -32,11 +35,6 @@
                 <source src={{item.archivo}} type="audio/ogg">
               Your browser does not support the audio element.
                 </audio>
-              </div>
-          </div>
-          <div *ngIf="item.category == 'Dibujo/fotografía'">
-            <div class="media">
-              <img src={{item.archivo}} class="img-fluid">
               </div>
           </div>
           <div *ngIf="item.category == 'Video'">

@@ -17,9 +17,6 @@ export class PostService {
       };
       }
    }
- 
-  
-
   postData(formData){
     return this.httpClient.post<any>('http://127.0.0.1:5000/portfolio', formData,this.httpOptions);
   }

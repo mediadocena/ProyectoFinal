@@ -10,6 +10,7 @@ export class PortfolioComponent implements OnInit {
 
   constructor(private post:PostService) { }
   data:any;
+  index:number = undefined;
   ngOnInit() {
     this.ObtenerPosts();
   }
@@ -17,5 +18,8 @@ export class PortfolioComponent implements OnInit {
     this.post.GetAll().subscribe((data:any)=>{
       this.data = data;
     })
+  }
+  ObtenerModal(i){
+    this.index=i;
   }
 }
