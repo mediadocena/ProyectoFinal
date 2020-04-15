@@ -29,7 +29,20 @@ export class HomeComponent implements OnInit {
       this.data = this.fulldata;
     }else{
       this.data = [];
+      var BreakException = {};
       this.fulldata.forEach((dat:any) => {
+        if(dat.tags){
+          try{
+          dat.tags.forEach(element => {
+            if(element.toLowerCase().search(this.searchArgs.toLowerCase()) != -1){
+              this.data.push(dat);
+              throw BreakException;
+            }
+          });
+          }catch(e){
+            if (e !== BreakException) throw e;
+          }
+        }
         if (dat.titulo.toLowerCase().search(this.searchArgs.toLowerCase()) != -1 ||
           dat.autor.toLowerCase().search(this.searchArgs.toLowerCase()) != -1) {
           this.data.push(dat);

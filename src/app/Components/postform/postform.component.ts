@@ -10,7 +10,7 @@ import { PostService } from 'src/app/Services/post.service';
 export class PostformComponent implements OnInit {
   uploadForm:FormGroup;
   token:any = JSON.parse(localStorage.getItem('token'));
-  
+  tags;
   constructor(private formBuilder:FormBuilder,private post:PostService) { 
   }
 
@@ -21,7 +21,8 @@ export class PostformComponent implements OnInit {
       titulo: [''],
       text:[''],
       category:[''],
-      author:this.token._id.$oid
+      author:this.token._id.$oid,
+      tags:[]
     });
   }
   onFileSelect(event) {
@@ -37,7 +38,15 @@ export class PostformComponent implements OnInit {
     formData.append('text', this.uploadForm.get('text').value);
     formData.append('author', this.uploadForm.get('author').value);
     formData.append('category', this.uploadForm.get('category').value);
-    console.log(formData.get('titulo'),formData.get('category'))
+    let arr:any[]=[];
+    console.log(this.uploadForm.get('tags').value);
+    let item = this.uploadForm.get('tags').value
+    for(let itm of item){
+      arr.push(itm.value);
+    }
+    formData.append('tags', arr.toString());
+
+    console.log(formData.get('titulo'),formData.get('category'));
     this.post.postData(formData).subscribe(
       ok=>{console.log('ok')},
       err=>{console.log('err')}

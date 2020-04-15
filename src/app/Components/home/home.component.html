@@ -60,6 +60,14 @@
         -->
           <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>{{item.titulo}}</strong></h3>
           <p class="white-text mb-0">{{item.texto}} </p>
+          <div *ngIf="item.tags">
+            <div class="row">             
+                  <div class="text-center" *ngFor="let tags of item.tags">
+                    <span class="badge badge-pill badge-success">{{tags}}</span>
+                  </div>
+            </div>
+          </div>
+          
         </div>
         <p class="white-text mb-0"><i class="far fa-star"></i>111&#9;<i class="far fa-comment"></i> 1222</p>
       </div>

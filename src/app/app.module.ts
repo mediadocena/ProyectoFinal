@@ -18,6 +18,7 @@ import { WrongRouteComponent } from './Components/wrong-route/wrong-route.compon
 import { HomeComponent } from './Components/home/home.component';
 import { PostformComponent } from './Components/postform/postform.component';
 import { SigninComponent } from './Components/signin/signin.component';
+import { TagInputModule } from 'ngx-chips';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { SigninComponent } from './Components/signin/signin.component';
     SigninComponent
   ],
   imports: [
+    TagInputModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
