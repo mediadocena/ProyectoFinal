@@ -36,3 +36,16 @@ body {
     .backwhite{
         background-color: white;
     }
+    .text-image{
+        position: absolute;
+        white-space: nowrap;
+        width: 120px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        bottom: 8px;
+        left: 16px;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    .text-image-container{
+        position: relative;
+    }

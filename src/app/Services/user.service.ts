@@ -33,4 +33,7 @@ export class UserService {
   public Delog(){
     return this.http.delete('http://127.0.0.1:5000/logout',this.httpOptions);
   }
+  public Post(data){
+    return this.http.post('http://127.0.0.1:5000/postuser',data);
+  }
 }

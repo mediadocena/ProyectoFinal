@@ -11,6 +11,7 @@ export class PortfolioComponent implements OnInit {
   constructor(private post:PostService) { }
   data:any;
   index:number = undefined;
+  username = JSON.parse(localStorage.getItem('token')).name;
   ngOnInit() {
     this.ObtenerPosts();
   }
