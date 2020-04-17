@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/Services/post.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio',
@@ -8,15 +9,16 @@ import { PostService } from 'src/app/Services/post.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor(private post:PostService) { }
+  constructor(private post:PostService,private route: ActivatedRoute) { }
   data:any;
   index:number = undefined;
   username = JSON.parse(localStorage.getItem('token')).name;
+  _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
     this.ObtenerPosts();
   }
   ObtenerPosts(){
-    this.post.GetAll().subscribe((data:any)=>{
+    this.post.GetById(this._id).subscribe((data:any)=>{
       this.data = data;
     })
   }

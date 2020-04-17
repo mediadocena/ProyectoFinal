@@ -19,6 +19,9 @@ import { HomeComponent } from './Components/home/home.component';
 import { PostformComponent } from './Components/postform/postform.component';
 import { SigninComponent } from './Components/signin/signin.component';
 import { TagInputModule } from 'ngx-chips';
+import { PostComponent } from './Components/post/post.component';
+import { NotverifiedComponent } from './Components/notverified/notverified.component';
+import { VerificarComponent } from './Components/verificar/verificar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,10 @@ import { TagInputModule } from 'ngx-chips';
     WrongRouteComponent,
     HomeComponent,
     PostformComponent,
-    SigninComponent
+    SigninComponent,
+    PostComponent,
+    NotverifiedComponent,
+    VerificarComponent
   ],
   imports: [
     TagInputModule,

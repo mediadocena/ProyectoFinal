@@ -36,4 +36,7 @@ export class UserService {
   public Post(data){
     return this.http.post('http://127.0.0.1:5000/postuser',data);
   }
+  public Confirm(id){
+    return this.http.get('http://127.0.0.1:5000/Confirm/'+id);
+  }
 }

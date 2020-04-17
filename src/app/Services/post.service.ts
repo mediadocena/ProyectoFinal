@@ -23,5 +23,11 @@ export class PostService {
   GetAll(){
     return this.httpClient.get('http://127.0.0.1:5000/portfolio');
   }
+  GetById(id){
+    return this.httpClient.get(`http://127.0.0.1:5000/userportfolio/${id}`,this.httpOptions);
+  }
+  GetPost(id){
+    return this.httpClient.get(`http://127.0.0.1:5000/getportfolio/${id}`,this.httpOptions);
+  }
   
 }

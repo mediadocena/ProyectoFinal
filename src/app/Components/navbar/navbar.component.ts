@@ -12,9 +12,13 @@ export class NavbarComponent implements OnInit {
   constructor(private auth:AuthService,private user:UserService) { }
   logged:boolean = false;
   rol;
-  icono = 'https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png';
+  icono;
+  _id;
+
   ngOnInit() {
     if(this.auth.isAuthenticated()){
+      this.icono = JSON.parse(localStorage.getItem('token')).icon;
+      this._id = JSON.parse(localStorage.getItem('token'))._id.$oid;
       this.logged = true;
     }else{
       this.logged = false;
