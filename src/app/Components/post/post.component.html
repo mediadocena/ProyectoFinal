@@ -1,9 +1,32 @@
 <br>
-<div class="container">
+<div class="container backwhite">
     <div class="row">
         <div class="col">
+            <div *ngIf="data.category == 'Dibujo/fotografía'">
+                <div class="media">
+                  <img  class="card-img-top" src={{data.archivo}} class="img-fluid">
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+            <div *ngIf="data.category == 'Música'">
+              <div class="media">
+                <audio controls>
+                  <source src={{data.archivo}} type="audio/ogg">
+                Your browser does not support the audio element.
+                  </audio>
+                </div>
+            </div>
+            <div *ngIf="data.category == 'Video'">
+              <div class="media">
+                <video width="250" height="140" controls>
+                  <source src={{data.archivo}} type="video/mp4">
+                </video>
+              </div>
+            </div>
             <h2>{{data.titulo}}</h2>
             <p>{{data.texto}}</p>
+            <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
         </div>
     </div>
 </div>

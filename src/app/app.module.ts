@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BarRatingModule } from "ngx-bar-rating";
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { TagInputModule } from 'ngx-chips';
 import { PostComponent } from './Components/post/post.component';
 import { NotverifiedComponent } from './Components/notverified/notverified.component';
 import { VerificarComponent } from './Components/verificar/verificar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { VerificarComponent } from './Components/verificar/verificar.component';
   ],
   imports: [
     TagInputModule,
+    BarRatingModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
