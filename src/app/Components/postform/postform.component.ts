@@ -38,6 +38,7 @@ export class PostformComponent implements OnInit {
     formData.append('text', this.uploadForm.get('text').value);
     formData.append('author', this.uploadForm.get('author').value);
     formData.append('category', this.uploadForm.get('category').value);
+    formData.append('totalpoints','0');
     let arr:any[]=[];
     console.log(this.uploadForm.get('tags').value);
     let item = this.uploadForm.get('tags').value
@@ -52,7 +53,11 @@ export class PostformComponent implements OnInit {
 
     console.log(formData.get('titulo'),formData.get('category'));
     this.post.postData(formData).subscribe(
-      ok=>{console.log('ok')},
+      ok=>{
+        console.log('ok')
+        alert('Se ha añadido el trabajo a tu portfolio')
+        window.location.reload();
+    },
       err=>{console.log('err')}
     )
   }

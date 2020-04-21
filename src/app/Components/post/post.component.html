@@ -1,14 +1,12 @@
 <br>
-<div class="container backwhite">
-    <div class="row">
-        <div class="col">
+<div class="container backwhite rounded">
+    <div class="row " style="justify-content: center;">
             <div *ngIf="data.category == 'Dibujo/fotografía'">
                 <div class="media">
-                  <img  class="card-img-top" src={{data.archivo}} class="img-fluid">
+                  <img src={{data.archivo}} class="img-fluid">
                   </div>
               </div>
-          </div>
-          <div class="card-body">
+          
             <div *ngIf="data.category == 'Música'">
               <div class="media">
                 <audio controls>
@@ -24,10 +22,29 @@
                 </video>
               </div>
             </div>
-            <h2>{{data.titulo}}</h2>
-            <p>{{data.texto}}</p>
-            <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
-            <button class="btn-primary" (click)="Puntuar()">Puntuar</button>
-        </div>
+          
+         
     </div>
+    <div class="row backwhite">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <h2>{{data.titulo}}</h2>
+        <p>{{data.texto}}</p>
+        <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+      <button class="btn btn-primary" (click)="Puntuar()">Puntuar</button>
+    </div>
+    <div class="col-4"></div>
+    </div>
+    <br>
+    <div *ngFor="let com of data.coments">
+    <div class="row backwhite rounded" style="justify-content: center;">
+      <div style="width: 80%;">
+        <h1>TEXTO</h1>
+        <p>{{com.cuerpo}}</p>
+      </div>    
+  </div>
 </div>
+</div>
+<br>
+
+

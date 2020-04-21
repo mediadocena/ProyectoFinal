@@ -19,6 +19,15 @@ export class PostComponent implements OnInit {
       this.data = data;
       if(this.data.points != ""){
         this.points = this.data.points;
+        let iduser;
+        if(localStorage.getItem('token')){
+          iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
+        }
+        this.points.forEach((val,index)=>{
+          if(val.id == iduser){
+            this.rate = val.rate;
+          }
+        })
       }else{
         this.points = [];
       }
@@ -36,7 +45,9 @@ export class PostComponent implements OnInit {
     this.data.points = this.points;
     console.log(this.data)
     this.post.Update(this.data).subscribe((data)=>{
-      console.log(data);
+      
+      console.log(this.points);
+      alert('Post Puntuado: ' + newrate.rate)
     },(err)=>{
       alert(err);
       console.log(err);
@@ -48,7 +59,8 @@ export class PostComponent implements OnInit {
     this.points.forEach((val,index)=>{
       if(val.id == iduser){
         comentUser = true;
-        this.points[index] == newrate;
+        this.points[index] = newrate;
+        console.log(this.points[index])
       }
     })
     if(comentUser == false){

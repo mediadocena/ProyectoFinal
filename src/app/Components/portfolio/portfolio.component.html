@@ -67,12 +67,13 @@
   
         <!-- Grid column -->
         <div class="col-md-12 dark-grey-text d-flex justify-content-center mb-5">
-  
-          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="all">OPTION1</button>
+          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="all" (click)="Reset()">Todo</button>
           <p class="font-weight-bold mb-0 px-1 py-1">/</p>
-          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="1">OPTION2</button>
+          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="all" (click)="Imagenes()">Dibujo/Fotografías</button>
           <p class="font-weight-bold mb-0 px-1 py-1">/</p>
-          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="2">OPTION3</button>
+          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="1" (click)="Videos()">Videos</button>
+          <p class="font-weight-bold mb-0 px-1 py-1">/</p>
+          <button type="button" class="btn btn-flat btn-lg m-0 px-3 py-1 filter" data-rel="2" (click)="Musica()">Musica</button>
   
         </div>
         <!-- Grid column -->
@@ -85,21 +86,21 @@
     <div *ngFor="let dat of data index as i">
     <!-- Grid column -->
     <div class="mb-3 pics all 2 animation">
-      <a data-toggle="modal" data-target="#basicExampleModal"  (click)="ObtenerModal(i)">
+      <a   routerLink='/post/{{data[i]._id.$oid}}'>
         <div *ngIf="dat.category=='Dibujo/fotografía'">
-          <div class="text-image-container">
+          <div class="view">
             <img class="img-fluid z-depth-1 rounded" src={{dat.archivo}} alt="Card image cap">
-              <div class="text-image">
-                <h4 class="text-white">{{dat.titulo}}</h4>
-              </div>
+            <div class="mask flex-center waves-effect waves-light rgba-black-slight">
+              <p class="white-text">{{dat.titulo}}</p>
+            </div>
           </div>
           
         </div>
         <div *ngIf="dat.category!='Dibujo/fotografía'">
-          <div class="text-image-container">
+          <div class="view">
             <img class="img-fluid z-depth-1 rounded" src="https://i.etsystatic.com/10919371/r/il/155a7d/1563938723/il_570xN.1563938723_1rmr.jpg" alt="">
-            <div class="text-image">
-              <h4 class="text-white">{{dat.titulo}}</h4>
+            <div class="mask flex-center waves-effect waves-light rgba-black-slight">
+              <p class="white-text">{{dat.titulo}}</p>
             </div>
           </div>
         </div>
