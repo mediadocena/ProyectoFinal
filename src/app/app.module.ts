@@ -23,7 +23,7 @@ import { TagInputModule } from 'ngx-chips';
 import { PostComponent } from './Components/post/post.component';
 import { NotverifiedComponent } from './Components/notverified/notverified.component';
 import { VerificarComponent } from './Components/verificar/verificar.component';
-
+import { PostListComponent } from './Components/post-list/post-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +37,8 @@ import { VerificarComponent } from './Components/verificar/verificar.component';
     SigninComponent,
     PostComponent,
     NotverifiedComponent,
-    VerificarComponent
+    VerificarComponent,
+    PostListComponent
   ],
   imports: [
     TagInputModule,

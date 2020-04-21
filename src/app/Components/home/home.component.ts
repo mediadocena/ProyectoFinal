@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   data:any[]; 
   fulldata:any[];
   searchArgs:string;
-
   ngOnInit() {
     this.ObtenerPosts();
   }
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
   ObtenerPosts(){
     this.post.GetAll().subscribe((data:any)=>{
       this.data = data;
-      this.fulldata = data
+      this.fulldata = data; 
     })
   }
   Buscar(searchArgs:string){

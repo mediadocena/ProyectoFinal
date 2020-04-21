@@ -41,8 +41,12 @@ export class PostformComponent implements OnInit {
     let arr:any[]=[];
     console.log(this.uploadForm.get('tags').value);
     let item = this.uploadForm.get('tags').value
-    for(let itm of item){
-      arr.push(itm.value);
+    if(item != null){
+      for(let itm of item){
+        arr.push(itm.value);
+      }
+    }else{
+      item = "";
     }
     formData.append('tags', arr.toString());
 

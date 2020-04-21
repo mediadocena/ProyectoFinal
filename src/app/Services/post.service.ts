@@ -30,7 +30,7 @@ export class PostService {
     return this.httpClient.get(`http://127.0.0.1:5000/getportfolio/${id}`,this.httpOptions);
   }
   Update(data){
-    return this.httpClient.put('http://127.0.0.1:5000/getportfolio',data,this.httpOptions);
+    return this.httpClient.put('http://127.0.0.1:5000/portfolio',data,this.httpOptions);
   }
   
 }
