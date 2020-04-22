@@ -20,6 +20,9 @@ export class SigninComponent implements OnInit {
     }
   }
   signIn(){
+    if(this.email == '' || this. password == '' || this.password2 == '' || this.username == ''){
+      return alert('Por favor, rellene todos los campos');
+    }
     if(this.password==this.password2){
       let data = {
         'mail':this.email,

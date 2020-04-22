@@ -32,6 +32,14 @@ export class PostformComponent implements OnInit {
     }
   }
   onSubmit() {
+    if(this.uploadForm.get('file').value != '' || 
+        this.uploadForm.get('titulo').value != '' ||
+        this.uploadForm.get('text').value != ''){
+
+       console.log(this.uploadForm.get('file').value)
+      return alert('Por favor, rellene todos los campos');
+      
+    }
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('file').value);
     formData.append('titulo', this.uploadForm.get('titulo').value);

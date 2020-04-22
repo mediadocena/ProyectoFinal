@@ -14,6 +14,7 @@ export class PortfolioComponent implements OnInit {
   index:number = undefined;
   fulldata;
   username = JSON.parse(localStorage.getItem('token')).name;
+  icon = JSON.parse(localStorage.getItem('token')).icon;
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
     this.ObtenerPosts();

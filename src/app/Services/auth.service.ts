@@ -8,11 +8,9 @@ export class AuthService {
       const token = JSON.parse(localStorage.getItem('token'));
     //Fecha de creación del token (UTF)
     let fecha = new Date(JSON.stringify(token.exp));
-    let fechaExp:Date = new Date();
-    //La fecha de caducidad esperada será siempre 10 dias después de la generación del token:
-    fechaExp.setDate(fecha.getDate() + 10);
     let hoy:Date = new Date();
-    if(hoy > fechaExp){
+    console.log('HOY: '+hoy)
+    if(hoy > fecha){
       console.log('token caducado');
       localStorage.removeItem('token');
       localStorage.removeItem('rol');
