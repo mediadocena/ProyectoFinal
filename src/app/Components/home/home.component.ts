@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   searchArgs:string;
   ngOnInit() {
     this.ObtenerPosts();
+    
   }
 
   ObtenerPosts(){

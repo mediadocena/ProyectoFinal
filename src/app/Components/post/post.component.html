@@ -1,5 +1,8 @@
 <br>
 <div class="container backwhite rounded">
+  <div *ngIf="data.autor == iduser">
+    <button class="btn btn-danger">X</button>
+  </div>
     <div class="row " style="justify-content: center;">
             <div *ngIf="data.category == 'Dibujo/fotografía'">
                 <div class="media">
@@ -21,9 +24,7 @@
                   <source src={{data.archivo}} type="video/mp4">
                 </video>
               </div>
-            </div>
-          
-         
+            </div>      
     </div>
     <div class="row backwhite">
       <div class="col-4"></div>
@@ -33,16 +34,42 @@
         <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
       <button class="btn btn-primary" (click)="Puntuar()">Puntuar</button>
     </div>
-    <div class="col-4"></div>
+    <div class="col-4">
+    </div>
     </div>
     <br>
-    <div *ngFor="let com of data.coments">
-    <div class="row backwhite rounded" style="justify-content: center;">
-      <div style="width: 80%;">
-        <h1>TEXTO</h1>
-        <p>{{com.cuerpo}}</p>
-      </div>    
-  </div>
+    <div *ngIf="auth" class="row backwhite rounded" style="justify-content: center;">
+      <input [(ngModel)]="comentario" type="text" name="comentario" id="comentario">
+      <button class="btn btn-primary" (click)="Comentar()">Comentar</button>
+    </div>
+    <div *ngIf="!auth" class="row backwhite rounded">
+      <h3>Logeate para poder comentar</h3>
+    </div>
+    <br>
+    <hr>
+    <div *ngFor="let com of data.coments;let i = index">
+      <div class="row">
+        <div class="col-lg-1">
+          <img src="{{com.icono}}" class="rounded-circle z-depth-0"
+          data-toggle="dropdown" alt="avatar image" height="35">
+        </div>
+        <div class="col-lg-11">
+          <h3>{{com.name}}</h3>
+        </div>
+  
+      </div>
+      <br>
+  
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-9">
+          <p>{{com.coment}}</p>
+        </div>
+        <div class="col-lg-2" *ngIf="com.id == iduser">
+          <button class="btn btn-danger" type="button" (click)="Eliminar(i)">Eliminar</button>
+        </div>
+      </div>
+      <hr>
 </div>
 </div>
 <br>

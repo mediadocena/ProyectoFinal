@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PostService } from 'src/app/Services/post.service';
-
+import Swal from 'ngx-angular8-sweetalert2';
 @Component({
   selector: 'app-postform',
   templateUrl: './postform.component.html',
@@ -32,12 +32,13 @@ export class PostformComponent implements OnInit {
     }
   }
   onSubmit() {
-    if(this.uploadForm.get('file').value != '' || 
-        this.uploadForm.get('titulo').value != '' ||
-        this.uploadForm.get('text').value != ''){
+    if(this.uploadForm.get('file').value == '' || 
+        this.uploadForm.get('titulo').value == '' ||
+        this.uploadForm.get('text').value == ''){
 
        console.log(this.uploadForm.get('file').value)
-      return alert('Por favor, rellene todos los campos');
+       
+      return Swal.fire('Error','Por favor, rellene todos los campos','error');
       
     }
     const formData = new FormData();
@@ -63,7 +64,7 @@ export class PostformComponent implements OnInit {
     this.post.postData(formData).subscribe(
       ok=>{
         console.log('ok')
-        alert('Se ha añadido el trabajo a tu portfolio')
+        Swal.fire('Done!','Se ha añadido el trabajo a tu portfolio','success');
         window.location.reload();
     },
       err=>{console.log('err')}

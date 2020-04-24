@@ -12,19 +12,25 @@ export class PostComponent implements OnInit {
   constructor(private post:PostService,private route: ActivatedRoute) { }
   data;
   rate;
+  auth = false;
+  comentario;
+  iduser;
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
+    if(localStorage.getItem("token")){
+      this.auth = true;
+    }
     this.post.GetPost(this._id).subscribe((data)=>{
       this.data = data;
       if(this.data.points != ""){
         this.points = this.data.points;
-        let iduser;
+        
         if(localStorage.getItem('token')){
-          iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
+          this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
         }
         this.points.forEach((val,index)=>{
-          if(val.id == iduser){
+          if(val.id == this.iduser){
             this.rate = val.rate;
           }
         })
@@ -34,14 +40,13 @@ export class PostComponent implements OnInit {
     });
   }
   Puntuar(){
-    let iduser;
     if(localStorage.getItem('token'))
-      iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
+      this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
     let newrate={
-      'id':iduser,
+      'id':this.iduser,
       'rate':this.rate
     }
-    this.FindPoints(iduser,newrate);
+    this.FindPoints(this.iduser,newrate);
     this.data.points = this.points;
     console.log(this.data)
     this.post.Update(this.data).subscribe((data)=>{
@@ -68,6 +73,21 @@ export class PostComponent implements OnInit {
       console.log(this.points);
     }
   }
-
+  Comentar(){
+    this.data.coments.push({
+      "id":this.iduser,
+      "coment":this.comentario,
+      "icono":JSON.parse(localStorage.getItem("token")).icon,
+      "name":JSON.parse(localStorage.getItem("token")).name
+    })
+    this.post.Update(this.data).subscribe((data)=>{
+      console.log(data)
+    },(err)=>{
+      console.log(err);
+    })
+  }
+  Eliminar(id){
+    
+  }
 
 }

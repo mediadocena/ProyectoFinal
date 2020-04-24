@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { api } from '../Const/const';
 
 @Injectable({
   providedIn: 'root'
@@ -18,19 +19,19 @@ export class PostService {
       }
    }
   postData(formData){
-    return this.httpClient.post<any>('http://127.0.0.1:5000/portfolio', formData,this.httpOptions);
+    return this.httpClient.post<any>(`${api}portfolio`, formData,this.httpOptions);
   }
   GetAll(){
-    return this.httpClient.get('http://127.0.0.1:5000/portfolio');
+    return this.httpClient.get(`${api}portfolio`);
   }
   GetById(id){
-    return this.httpClient.get(`http://127.0.0.1:5000/userportfolio/${id}`,this.httpOptions);
+    return this.httpClient.get(`${api}userportfolio/${id}`,this.httpOptions);
   }
   GetPost(id){
-    return this.httpClient.get(`http://127.0.0.1:5000/getportfolio/${id}`,this.httpOptions);
+    return this.httpClient.get(`${api}getportfolio/${id}`,this.httpOptions);
   }
   Update(data){
-    return this.httpClient.put('http://127.0.0.1:5000/portfolio',data,this.httpOptions);
+    return this.httpClient.put(`${api}portfolio`,data,this.httpOptions);
   }
   
 }
