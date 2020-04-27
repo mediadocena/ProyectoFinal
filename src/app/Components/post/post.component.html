@@ -1,7 +1,7 @@
 <br>
 <div class="container backwhite rounded">
   <div *ngIf="data.autor == iduser">
-    <button class="btn btn-danger">X</button>
+    <button class="btn btn-danger" (click)="ElimModal()">X</button>
   </div>
     <div class="row " style="justify-content: center;">
             <div *ngIf="data.category == 'Dibujo/fotografía'">

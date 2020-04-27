@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/Services/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-post',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostComponent implements OnInit {
 
-  constructor(private post:PostService,private route: ActivatedRoute) { }
+  constructor(private post:PostService,private route: ActivatedRoute,private router:Router) { }
   data;
   rate;
   auth = false;
@@ -20,15 +21,12 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem("token")){
       this.auth = true;
+      this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
     }
     this.post.GetPost(this._id).subscribe((data)=>{
       this.data = data;
       if(this.data.points != ""){
         this.points = this.data.points;
-        
-        if(localStorage.getItem('token')){
-          this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
-        }
         this.points.forEach((val,index)=>{
           if(val.id == this.iduser){
             this.rate = val.rate;
@@ -87,7 +85,43 @@ export class PostComponent implements OnInit {
     })
   }
   Eliminar(id){
-    
+    this.data.coments.splice(id,1);
+    this.post.Update(this.data).subscribe((data)=>{
+      console.log(data);
+    },(err)=>{
+      console.log(err);
+    })
+  }
+  EliminarPost(){
+    console.log(this.data._id.$oid)
+    this.post.Delete(this.data._id.$oid).subscribe((data)=>{
+      console.log(data);
+      this.router.navigate['Home']
+    },(err)=>{
+      console.log(err);
+    })
+  }
+
+  ElimModal(){
+    Swal.fire({
+      title: '¿Desear eliminar el post?',
+      text: "No podrás revertir el cambio",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText:'no'
+    }).then((result) => {
+      if (result.value) {
+        this.EliminarPost();
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
 
 }

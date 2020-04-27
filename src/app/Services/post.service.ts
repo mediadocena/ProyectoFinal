@@ -33,5 +33,8 @@ export class PostService {
   Update(data){
     return this.httpClient.put(`${api}portfolio`,data,this.httpOptions);
   }
+  Delete(id){
+    return this.httpClient.delete(`${api}portfolio/${id}`,this.httpOptions);
+  }
   
 }
