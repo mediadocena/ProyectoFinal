@@ -9,13 +9,15 @@ import { UserService } from 'src/app/Services/user.service';
 export class UserComponent implements OnInit {
 
   constructor(private user:UserService) { }
-
+  data;
   ngOnInit() {
+    this.GetAll();
   }
 
   GetAll(){
-    this.user.ObtenerUsuarios().subscribe((res)=>{
-      console.log(res);
-    });
+    this.data = JSON.parse(localStorage.getItem('token'));
+  }
+  CambiarNick(){
+    
   }
 }
