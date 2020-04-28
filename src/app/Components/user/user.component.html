@@ -2,19 +2,34 @@
 <div class="container backwhite rounded">
     <div class="row">
         <div class="col-2">
-            <img class="icon" src="{{data.icon}}" alt="">
+            <img class="icon rounded-circle" style="margin-top: 10px; margin-left: 10px;" src="{{data.icon}}" alt="">
         </div>
         <div class="col">
             <h2>{{data.name}}</h2>
             <h4>{{data.mail}}</h4>
         </div>
-    </div>    
+    </div>
+    <br>
     <div class="row">
         <div class="col-2">
 
         </div>
         <div class="col">
-            <button class="btn btn-primary" (click)="CambiarNick()">Cambiar Nick</button>
+            <div class="row">
+                <button (click)="onFileSelect()" class="btn btn-primary">Cambiar Icono</button>
+            </div>
+        </div>
+    </div>    
+    <br>
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col">
+            <div class="row">
+                <button class="btn btn-primary" (click)="CambiarNick()">Cambiar Nick</button>
+                <button class="btn btn-primary" (click)="CambiarContrasena()">Cambiar Contraseña</button>
+            </div>
         </div>
     </div>
 </div>

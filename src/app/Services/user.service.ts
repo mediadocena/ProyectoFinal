@@ -40,4 +40,7 @@ export class UserService {
   public Confirm(id){
     return this.http.get(`${api}Confirm/`+id);
   }
+  public Update(data){
+    return this.http.put(`${api}user`,data,this.httpOptions);
+  }
 }
