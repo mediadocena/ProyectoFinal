@@ -16,7 +16,6 @@ export class UserService {
     }
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
         'Authorization': `Bearer ${this.token}`
       })
     };
@@ -42,5 +41,14 @@ export class UserService {
   }
   public Update(data){
     return this.http.put(`${api}user`,data,this.httpOptions);
+  }
+  public UpdateIcon(data){
+    return this.http.put(`${api}changeicon`,data,this.httpOptions);
+  }
+  public Upload(form){
+    return this.http.post<any>(`${api}upload`,form,this.httpOptions);
+  }
+  public BorrarImg(name){
+    return this.http.delete(`${api}delete/${name}`);
   }
 }

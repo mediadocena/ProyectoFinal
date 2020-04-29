@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Services/user.service';
 import Swal from 'sweetalert2';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { api } from 'src/app/Const/const';
 
 @Component({
   selector: 'app-user',
@@ -9,17 +11,42 @@ import Swal from 'sweetalert2';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private user:UserService) { }
+  constructor(private user:UserService,private formBuilder:FormBuilder) { }
   data;
+  uploadForm:FormGroup;
   ngOnInit() {
     this.GetAll();
+    this.uploadForm = this.formBuilder.group({
+      file: [''],
+      filename: this.data._id.$oid
+    });
   }
 
   GetAll(){
     this.data = JSON.parse(localStorage.getItem('token'));
   }
-  CambiarNick(){
-    
+  async CambiarNick(){
+    const { value: nick } = await Swal.fire({
+      title: 'Introduzca su nuevo nick',
+      input: 'text',
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Introduzca un nick'
+        }
+      }
+    })
+
+    if (nick) {
+      this.data.name = nick;
+      this.user.Update(this.data).subscribe((data)=>{
+        localStorage.setItem('token',JSON.stringify(this.data));
+        Swal.fire(`Tu nuevo nick es: ${nick}`,'success');
+      },(err)=>{
+        Swal.fire('Eror al cambiar nick','error');
+      })
+      
+    }
   }
   CambiarContrasena(){
     Swal.mixin({
@@ -80,15 +107,45 @@ export class UserComponent implements OnInit {
       }
     })
     if (file) {
-      const reader = new FileReader()
-      reader.onload = (e:any) => {
-        Swal.fire({
-          title: 'Tu nuevo icono:',
-          imageUrl: e.target.result,
-          imageAlt: 'Tu nuevo icono'
+      const formdata = new FormData();
+      const reader = new FileReader();
+      this.uploadForm.get('file').setValue(file);
+      formdata.append('file',this.uploadForm.get('file').value);
+      formdata.append('filename',this.uploadForm.get('filename').value);
+      this.BorrarImg();
+      this.user.Upload(formdata).subscribe((data)=>{
+        this.data.icon = `${api}download/${this.data._id.$oid}.${file.name.substr(file.name.lastIndexOf('.') + 1)}`;
+        localStorage.setItem('token',JSON.stringify(this.data));
+        this.user.UpdateIcon(this.data).subscribe((data)=>{
+          reader.onload = (e:any) => {
+            Swal.fire({
+              title: 'Tu nuevo icono',
+              imageUrl: e.target.result,
+              imageAlt: 'Tu nuevo icono'
+            })
+          }
+          reader.readAsDataURL(file)
+        },(err)=>{
+          Swal.fire({
+            icon:'error',
+            title:'Error al modificar icono',
+            html:`${err}`,
+            confirmButtonText:'Aceptar'
+          })
         })
-      }
-      reader.readAsDataURL(file)
+      },(err)=>{
+        Swal.fire({
+          icon:'error',
+          title:'Error al subir icono',
+          html:`${err}`,
+          confirmButtonText:'Aceptar'
+        })
+      });
     }
+  }
+  BorrarImg(){
+    let name = this.data.icon.substr(this.data.icon.lastIndexOf('/') + 1)
+    console.log(name)
+    this.user.BorrarImg(name).subscribe();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Services/user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',JSON.stringify(data))
       window.location.reload();
     },(err)=>{
-      
+      Swal.fire('Error',
+      'Email o contraseña incorrectos',
+      'error')
     })
   }
 
