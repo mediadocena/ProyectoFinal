@@ -50,9 +50,9 @@ export class PostComponent implements OnInit {
     this.post.Update(this.data).subscribe((data)=>{
       
       console.log(this.points);
-      alert('Post Puntuado: ' + newrate.rate)
+      Swal.fire('¡Post puntuado!',`${newrate.rate}`,'info');
     },(err)=>{
-      alert(err);
+      Swal.fire('Error',`${err}`,'error');
       console.log(err);
     })
   }

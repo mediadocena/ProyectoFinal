@@ -6,7 +6,7 @@
     <!-- Name -->
     <input type="text" formControlName="titulo" id="titulo" name="titulo" class="form-control mb-6" placeholder="Titulo">
     <br>
-    <input type="file"  (change)="onFileSelect($event)" id="file" name="file" accept=".png,.jpg,.mp4,.mp3" placeholder="Archivo">
+    <input type="file" multiple  (change)="onFileSelect($event)" id="file" name="file" accept=".png,.jpg,.mp4,.mp3" placeholder="Archivo">
     <br>
     <br>
     <select name ='Categoría' formControlName="category" class="browser-default custom-select">

@@ -11,6 +11,7 @@ export class PostformComponent implements OnInit {
   uploadForm:FormGroup;
   token:any = JSON.parse(localStorage.getItem('token'));
   tags;
+  filenames:any[] = [];
   constructor(private formBuilder:FormBuilder,private post:PostService) { 
   }
 
@@ -27,13 +28,22 @@ export class PostformComponent implements OnInit {
   }
   onFileSelect(event) {
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      console.log(file);
-      this.uploadForm.get('file').setValue(file);
+      const file = event.target.files;
+      let fileData = new FormData();
+      let count = 0;
+      for (let fil of file){
+        fileData.append(`file${count}`,fil);
+        console.log(fil);
+        console.log(this.filenames)
+        count++;
+      }
+      this.post.UploadFile(fileData).subscribe((data:any)=>{
+        this.filenames = data;
+      });
     }
   }
   onSubmit() {
-    if(this.uploadForm.get('file').value == '' || 
+    if( 
         this.uploadForm.get('titulo').value == '' ||
         this.uploadForm.get('text').value == ''){
 
@@ -43,14 +53,14 @@ export class PostformComponent implements OnInit {
       
     }
     const formData = new FormData();
-    formData.append('file', this.uploadForm.get('file').value);
+    formData.append('file', JSON.stringify(this.filenames));
     formData.append('titulo', this.uploadForm.get('titulo').value);
     formData.append('text', this.uploadForm.get('text').value);
     formData.append('author', this.uploadForm.get('author').value);
     formData.append('category', this.uploadForm.get('category').value);
     formData.append('totalpoints','0');
     let arr:any[]=[];
-    console.log(this.uploadForm.get('tags').value);
+    console.log(this.filenames);
     let item = this.uploadForm.get('tags').value
     if(item != null){
       for(let itm of item){

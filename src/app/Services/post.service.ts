@@ -21,6 +21,9 @@ export class PostService {
   postData(formData){
     return this.httpClient.post<any>(`${api}portfolio`, formData,this.httpOptions);
   }
+  UploadFile(file){
+    return this.httpClient.post<any>(`${api}upload`,file,this.httpOptions);
+  }
   GetAll(){
     return this.httpClient.get(`${api}portfolio`);
   }
