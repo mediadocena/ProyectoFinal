@@ -39,5 +39,8 @@ export class PostService {
   Delete(id){
     return this.httpClient.delete(`${api}portfolio/${id}`,this.httpOptions);
   }
+  DeleteFile(file){
+    return this.httpClient.put(`${api}delete`,file,this.httpOptions);
+  }
   
 }

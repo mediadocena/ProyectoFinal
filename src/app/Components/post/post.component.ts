@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/Services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 
 @Component({
   selector: 'app-post',
@@ -18,13 +19,18 @@ export class PostComponent implements OnInit {
   iduser;
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
+  galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false },
+  { "breakpoint": 500, "width": "100%", "height": "200px" }];
+  galleryImages: NgxGalleryImage[];
+
   ngOnInit() {
     if(localStorage.getItem("token")){
       this.auth = true;
       this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
     }
-    this.post.GetPost(this._id).subscribe((data)=>{
+    this.post.GetPost(this._id).subscribe((data:any)=>{
       this.data = data;
+      this.galleryImages = data.archivo;
       if(this.data.points != ""){
         this.points = this.data.points;
         this.points.forEach((val,index)=>{
@@ -95,6 +101,8 @@ export class PostComponent implements OnInit {
   EliminarPost(){
     console.log(this.data._id.$oid)
     this.post.Delete(this.data._id.$oid).subscribe((data)=>{
+      this.post.DeleteFile({'files':this.data.archivo}).subscribe((data)=>{
+      })
       console.log(data);
       this.router.navigate['Home']
     },(err)=>{
@@ -116,8 +124,8 @@ export class PostComponent implements OnInit {
       if (result.value) {
         this.EliminarPost();
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Eliminado',
+          'Se ha eliminado el post',
           'success'
         )
       }

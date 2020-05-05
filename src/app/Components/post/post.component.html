@@ -6,7 +6,7 @@
     <div class="row " style="justify-content: center;">
             <div *ngIf="data.category == 'Dibujo/fotografía'">
                 <div class="media">
-                  <img src={{data.archivo}} class="img-fluid">
+                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                   </div>
               </div>
           
@@ -21,7 +21,7 @@
             <div *ngIf="data.category == 'Video'">
               <div class="media">
                 <video width="250" height="140" controls>
-                  <source src={{data.archivo}} type="video/mp4">
+                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                 </video>
               </div>
             </div>      

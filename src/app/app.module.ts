@@ -24,6 +24,7 @@ import { PostComponent } from './Components/post/post.component';
 import { NotverifiedComponent } from './Components/notverified/notverified.component';
 import { VerificarComponent } from './Components/verificar/verificar.component';
 import { PostListComponent } from './Components/post-list/post-list.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { PostListComponent } from './Components/post-list/post-list.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGalleryModule
     
   ],
   providers: [

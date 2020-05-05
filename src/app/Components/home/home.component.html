@@ -21,7 +21,7 @@
        <div class="view">
             <div *ngIf="item.category == 'Dibujo/fotografía'">
               <div class="media">
-                <img  class="card-img-top" src={{item.archivo}} class="img-fluid">
+                <img  class="card-img-top" src={{item.archivo[0].big}} class="img-fluid">
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
           <div *ngIf="item.category == 'Música'">
             <div class="media">
               <audio controls>
-                <source src={{item.archivo}} type="audio/ogg">
+                <source src={{item.archivo[0].big}} type="audio/ogg">
               Your browser does not support the audio element.
                 </audio>
               </div>
@@ -37,7 +37,7 @@
           <div *ngIf="item.category == 'Video'">
             <div class="media">
               <video width="250" height="140" controls>
-                <source src={{item.archivo}} type="video/mp4">
+                <source src={{item.archivo[0].big}} type="video/mp4">
               </video>
             </div>
           </div>
