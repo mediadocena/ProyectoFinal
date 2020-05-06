@@ -1,7 +1,7 @@
 <br>
 <div class="container">
 <!-- Default form contact -->
-<form class="text-center border border-dark rounded block backwhite p-5" [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-dark rounded block backwhite p-5" [(formGroup)] = "uploadForm" (ngSubmit)="onSubmit()">
     <p class="h4 mb-4">Añadir Trabajo</p>
     <!-- Name -->
     <input type="text" formControlName="titulo" id="titulo" name="titulo" class="form-control mb-6" placeholder="Titulo">

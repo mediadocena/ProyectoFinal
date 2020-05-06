@@ -19,7 +19,7 @@ export class PostComponent implements OnInit {
   iduser;
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
-  galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false },
+  galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false},
   { "breakpoint": 500, "width": "100%", "height": "200px" }];
   galleryImages: NgxGalleryImage[];
 
@@ -128,6 +128,7 @@ export class PostComponent implements OnInit {
           'Se ha eliminado el post',
           'success'
         )
+        this.router.navigate(['Home']);
       }
     })
   }

@@ -42,5 +42,8 @@ export class PostService {
   DeleteFile(file){
     return this.httpClient.put(`${api}delete`,file,this.httpOptions);
   }
+  ValidateFiles(filenames){
+    return this.httpClient.put(`${api}ValidateFiles`,filenames,this.httpOptions)
+  }
   
 }
