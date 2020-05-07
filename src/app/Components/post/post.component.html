@@ -12,10 +12,10 @@
           
             <div *ngIf="data.category == 'Música'">
               <div class="media">
-                <audio controls>
-                  <source src={{data.archivo}} type="audio/ogg">
-                Your browser does not support the audio element.
-                  </audio>
+              <mat-advanced-audio-player [playlist]="galleryImages" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
+                muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="pageSizeOptions" 
+                [displayVolumeControls]="msaapDisplayVolumeControls" [expanded]="true">
+              </mat-advanced-audio-player> 
                 </div>
             </div>
             <div *ngIf="data.category == 'Video'">

@@ -57,7 +57,7 @@ export class PostformComponent implements OnInit {
     formData.append('totalpoints','0');
     this.fileData.append('Autor',this.uploadForm.get('author').value);
     this.fileData.append('PostName',this.uploadForm.get('titulo').value);
-
+    this.fileData.append('category',this.uploadForm.get('category').value);
     this.post.UploadFile(this.fileData).subscribe((data:any)=>{
       this.filenames = data;
       

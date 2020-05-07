@@ -3,7 +3,7 @@ import { PostService } from 'src/app/Services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
-
+import { Track } from 'ngx-audio-player';   
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -22,7 +22,13 @@ export class PostComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false},
   { "breakpoint": 500, "width": "100%", "height": "200px" }];
   galleryImages: NgxGalleryImage[];
-
+  msaapDisplayTitle = true;
+  msaapDisplayPlayList = true;
+  msaapPageSizeOptions = [2,4,6];
+  msaapDisplayVolumeControls = true;
+    
+  // Material Style Advance Audio Player Playlist
+  msaapPlaylist: Track[]
   ngOnInit() {
     if(localStorage.getItem("token")){
       this.auth = true;
@@ -30,6 +36,9 @@ export class PostComponent implements OnInit {
     }
     this.post.GetPost(this._id).subscribe((data:any)=>{
       this.data = data;
+      if(data.category == 'Música'){
+        this.msaapPlaylist = data.archivo;
+      }
       this.galleryImages = data.archivo;
       if(this.data.points != ""){
         this.points = this.data.points;

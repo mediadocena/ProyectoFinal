@@ -25,6 +25,7 @@ import { NotverifiedComponent } from './Components/notverified/notverified.compo
 import { VerificarComponent } from './Components/verificar/verificar.component';
 import { PostListComponent } from './Components/post-list/post-list.component';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgxAudioPlayerModule
     
   ],
   providers: [
