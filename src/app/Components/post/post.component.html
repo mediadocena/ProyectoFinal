@@ -12,17 +12,32 @@
           
             <div *ngIf="data.category == 'Música'">
               <div class="media">
-              <mat-advanced-audio-player [playlist]="galleryImages" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
+              <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
                 muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="pageSizeOptions" 
                 [displayVolumeControls]="msaapDisplayVolumeControls" [expanded]="true">
               </mat-advanced-audio-player> 
                 </div>
             </div>
             <div *ngIf="data.category == 'Video'">
-              <div class="media">
-                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages">  
-                  </ngx-gallery>
+              <div class="row">
+                <h4>{{tituloActual}}</h4>
               </div>
+              <div class="row">
+                <div class="media">
+                <video width="420" height="240"  [(src)]="VideoActual" controls>
+                </video>
+              </div>
+            </div>
+            <div class="row">
+              <div class="scroll">  
+                <ul class="list-group list-group-flush">
+                <div *ngFor="let vid of srcVideo">    
+                  <li class="list-group-item btn btn-primary" (click)="ChangeVideo(vid)">{{vid.title}}</li>
+                </div>
+              </ul>
+              </div>
+            </div>
+              
             </div>      
     </div>
     <div class="row backwhite">

@@ -17,6 +17,9 @@ export class PostComponent implements OnInit {
   auth = false;
   comentario;
   iduser;
+  srcVideo;
+  VideoActual;
+  tituloActual;
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
   galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false},
@@ -26,8 +29,6 @@ export class PostComponent implements OnInit {
   msaapDisplayPlayList = true;
   msaapPageSizeOptions = [2,4,6];
   msaapDisplayVolumeControls = true;
-    
-  // Material Style Advance Audio Player Playlist
   msaapPlaylist: Track[]
   ngOnInit() {
     if(localStorage.getItem("token")){
@@ -36,10 +37,33 @@ export class PostComponent implements OnInit {
     }
     this.post.GetPost(this._id).subscribe((data:any)=>{
       this.data = data;
-      if(data.category == 'Música'){
-        this.msaapPlaylist = data.archivo;
+
+      switch (data.category) {
+        case 'Música':
+          this.msaapPlaylist = data.archivo;
+          break;
+          case 'Dibujo/fotografía':
+            this.galleryImages = data.archivo;
+          break;
+          case 'Video':
+            this.srcVideo = data.archivo;
+            this.VideoActual = data.archivo[0].link;
+            this.tituloActual = data.archivo[0].title;
+          break;
+        default:
+          break;
       }
+     /* if(data.category == 'Música')
+        
+      
+      if(data.category == 'Dibujo/fotografía')
       this.galleryImages = data.archivo;
+
+      if(data.category == 'Video'){
+        this.srcVideo = data.archivo;
+        this.VideoActual = data.archivo[0].link;
+      }*/
+
       if(this.data.points != ""){
         this.points = this.data.points;
         this.points.forEach((val,index)=>{
@@ -140,6 +164,11 @@ export class PostComponent implements OnInit {
         this.router.navigate(['Home']);
       }
     })
+  }
+
+  ChangeVideo(vid){
+    this.VideoActual = vid.link;
+    this.tituloActual = vid.title;
   }
 
 }
