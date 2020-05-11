@@ -39,7 +39,7 @@ export class PortfolioComponent implements OnInit {
   Videos(){
     this.data=[]
     this.fulldata.forEach(element => {
-      if(element.category == 'Videos'){
+      if(element.category == 'Video'){
         this.data.push(element);
       }
     });

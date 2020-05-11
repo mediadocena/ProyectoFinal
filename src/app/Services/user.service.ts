@@ -51,4 +51,7 @@ export class UserService {
   public BorrarImg(name){
     return this.http.delete(`${api}delete/${name}`);
   }
+  public UploadUserImg(form){
+    return this.http.post(`${api}UploadUserImg`,form,this.httpOptions);
+  }
 }

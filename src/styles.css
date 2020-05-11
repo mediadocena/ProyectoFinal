@@ -51,13 +51,28 @@ body {
         position: relative;
     }
     .icon{
-        max-width: 80px;
-        max-height: 80px;
+        width: 80px;
+        height: 80px;
+    }
+    .iconnav{
+        width: 50px;
+        height: 50px;
     }
     .coment-icon{
         max-width: 50px;
         max-height: 50px;
     }
     .scroll{
-        overflow: scroll;
+        overflow-y: scroll;
+    }
+    .bgdark{
+        background-color: black;
+    }
+    video{
+        width: 100%;
+        height: auto;
+    }
+    .wider{
+        width: 100%;
+        height: auto;
     }

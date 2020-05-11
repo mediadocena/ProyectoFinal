@@ -20,12 +20,19 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.user.login(this.email,this.password).subscribe((data:any) => {
-      console.log(data)
-      let id = data._id
-      id = id.$oid
-      console.log(id)
-      localStorage.setItem('token',JSON.stringify(data))
-      window.location.reload();
+      if(data.verified == 'true'){
+        console.log(data)
+        let id = data._id
+        id = id.$oid
+        console.log(id)
+        localStorage.setItem('token',JSON.stringify(data))
+        window.location.reload();
+      }else{
+        Swal.fire('Error',
+        'Su usuario no ha sido verificado, por favor consulte su correo electrónico',
+        'error');
+      }
+
     },(err)=>{
       Swal.fire('Error',
       'Email o contraseña incorrectos',

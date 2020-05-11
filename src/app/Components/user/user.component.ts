@@ -112,9 +112,10 @@ export class UserComponent implements OnInit {
       this.uploadForm.get('file').setValue(file);
       formdata.append('file',this.uploadForm.get('file').value);
       formdata.append('filename',this.uploadForm.get('filename').value);
-      this.BorrarImg();
-      this.user.Upload(formdata).subscribe((data)=>{
-        this.data.icon = `${api}download/${this.data._id.$oid}.${file.name.substr(file.name.lastIndexOf('.') + 1)}`;
+      //this.BorrarImg();
+      this.user.UploadUserImg(formdata).subscribe((data)=>{
+        //this.data.icon = `${api}download/${this.data._id.$oid}.${file.name.substr(file.name.lastIndexOf('.') + 1)}`;
+        this.data.icon = `${api}download/${this.data._id.$oid}`
         localStorage.setItem('token',JSON.stringify(this.data));
         this.user.UpdateIcon(this.data).subscribe((data)=>{
           reader.onload = (e:any) => {

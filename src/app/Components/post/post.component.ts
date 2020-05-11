@@ -23,7 +23,7 @@ export class PostComponent implements OnInit {
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
   galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false},
-  { "breakpoint": 500, "width": "100%", "height": "200px" }];
+  { "breakpoint": 500, "width": "100%", "height": "auto" }];
   galleryImages: NgxGalleryImage[];
   msaapDisplayTitle = true;
   msaapDisplayPlayList = true;
@@ -74,6 +74,8 @@ export class PostComponent implements OnInit {
       }else{
         this.points = [];
       }
+    },(err)=>{
+      this.router.navigate(['Home']);
     });
   }
   Puntuar(){
@@ -118,7 +120,8 @@ export class PostComponent implements OnInit {
       "name":JSON.parse(localStorage.getItem("token")).name
     })
     this.post.Update(this.data).subscribe((data)=>{
-      console.log(data)
+      console.log(data);
+      this.comentario='';
     },(err)=>{
       console.log(err);
     })
@@ -137,7 +140,6 @@ export class PostComponent implements OnInit {
       this.post.DeleteFile({'files':this.data.archivo}).subscribe((data)=>{
       })
       console.log(data);
-      this.router.navigate['Home']
     },(err)=>{
       console.log(err);
     })
