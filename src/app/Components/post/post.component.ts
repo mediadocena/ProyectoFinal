@@ -28,7 +28,6 @@ export class PostComponent implements OnInit {
   msaapDisplayTitle = true;
   msaapDisplayPlayList = true;
   msaapPageSizeOptions = [2,4,6];
-  msaapDisplayVolumeControls = true;
   msaapPlaylist: Track[]
   ngOnInit() {
     if(localStorage.getItem("token")){
@@ -171,6 +170,9 @@ export class PostComponent implements OnInit {
   ChangeVideo(vid){
     this.VideoActual = vid.link;
     this.tituloActual = vid.title;
+  }
+  AuthorPage(){
+    this.router.navigate(['portfolio/'+this.data.autor])
   }
 
 }

@@ -3,6 +3,9 @@
   <div *ngIf="data.autor == iduser">
     <button class="btn btn-danger" (click)="ElimModal()">X</button>
   </div>
+  <div class="chip">
+    <p class="h4" (click)="AuthorPage()">{{data.authorname}}</p>
+  </div>
     <div class="row " style="justify-content: center;">
             <div *ngIf="data.category == 'Dibujo/fotografía'">
                 <div class="media">
@@ -11,10 +14,11 @@
               </div>
           
             <div *ngIf="data.category == 'Música'">
+              <br>
               <div class="media">
               <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
-                muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="pageSizeOptions" 
-                [displayVolumeControls]="msaapDisplayVolumeControls" [expanded]="true">
+                muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" 
+                [displayVolumeControls]="true" [expanded]="true">
               </mat-advanced-audio-player> 
                 </div>
             </div>
@@ -65,7 +69,7 @@
     <div *ngFor="let com of data.coments;let i = index">
       <div class="row">
         <div class="col-lg-1">
-          <img src="{{com.icono}}" class="rounded-circle z-depth-0"
+          <img src="{{com.icono}}" class="rounded-circle z-depth-0 coment-icon"
           data-toggle="dropdown" alt="avatar image" height="35">
         </div>
         <div class="col-lg-11">

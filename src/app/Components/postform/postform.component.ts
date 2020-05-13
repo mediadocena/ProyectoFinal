@@ -16,6 +16,7 @@ export class PostformComponent implements OnInit {
     text:[''],
     category:[''],
     author:this.token._id.$oid,
+    authorname:this.token.name,
     tags:[]
   });
   tags;
@@ -53,6 +54,7 @@ export class PostformComponent implements OnInit {
     formData.append('titulo', this.uploadForm.get('titulo').value);
     formData.append('text', this.uploadForm.get('text').value);
     formData.append('author', this.uploadForm.get('author').value);
+    formData.append('authorname', this.uploadForm.get('authorname').value);
     formData.append('category', this.uploadForm.get('category').value);
     formData.append('totalpoints','0');
     this.fileData.append('Autor',this.uploadForm.get('author').value);

@@ -18,32 +18,33 @@
       <a href="/post/{{item._id.$oid}}">
       <div class="card light-blue darken-1 text-center z-depth-2">
        <!--Card image-->
-       <div class="view">
+       <div class="view homecard">
             <div *ngIf="item.category == 'Dibujo/fotografía'">
               <div class="media">
-                <img  class="card-img-top" src={{item.archivo[0].big}} class="img-fluid">
+                <img  class="card-img-top" alt ="{{item.archivo}}"src={{item.archivo[0].big}} class="img-fluid">
                 </div>
             </div>
         </div>
         <div class="card-body">
           <div *ngIf="item.category == 'Música'">
-            <div class="media">
+            <div class="media homecard">
               <audio controls>
-                <source src={{item.archivo[0].big}} type="audio/ogg">
+                <source src={{item.archivo[0].link}} type="audio/ogg">
               Your browser does not support the audio element.
                 </audio>
               </div>
           </div>
           <div *ngIf="item.category == 'Video'">
-            <div class="media">
-              <video width="250" height="140" controls>
-                <source src={{item.archivo[0].big}} type="video/mp4">
+            <div class="media homecard">
+              <video width="250" height="140" controls >
+                <source src={{item.archivo[0].link}} type="video/mp4">
               </video>
             </div>
           </div>
         <br>
-          <h3 class="text-uppercase font-weight-bold purple-text mt-2 mb-3"><strong>{{item.titulo}}</strong></h3>
+          <h3 class="text-uppercase font-weight-bold white-text mt-2 mb-3"><strong>{{item.titulo}}</strong></h3>
           <p class="white-text mb-0">{{item.texto}} </p>
+          <p class="white-text mb-0">Autor: {{item.authorname}}</p>
           <div *ngIf="item.tags">
             <div class="row">             
                   <div class="text-center" *ngFor="let tags of item.tags">
