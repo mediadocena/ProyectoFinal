@@ -1,0 +1,29 @@
+<br>
+
+<div class="container">
+    <table class="table">
+        <thead class="black white-text">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acción</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let usr of users; let i = index;">
+          <tr class="backwhite">
+            <th scope="row"><h3>{{i}}</h3></th>
+            <td><h3>{{usr.name}}</h3></td>
+            <div *ngIf="usr.rol == 'user'">
+                <td><button class="btn btn-primary" (click)="CreateAdmin(usr)">Crear Admin</button></td>
+               
+            </div>
+            <div *ngIf="usr.rol == 'admin'">
+                <td><p class="h4">Admin</p></td>
+            </div>
+            <td><button class="btn btn-danger" (click)="Eliminar(usr._id.$oid)">Eliminar</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+</div>

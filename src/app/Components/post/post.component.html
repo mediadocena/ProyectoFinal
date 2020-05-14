@@ -15,12 +15,12 @@
           
             <div *ngIf="data.category == 'Música'">
               <br>
-              <div class="media">
+              <div class="col">
               <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false" 
                 muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" 
-                [displayVolumeControls]="true" [expanded]="true">
+                [displayVolumeControls]="true" [expanded]="false">
               </mat-advanced-audio-player> 
-                </div>
+            </div>
             </div>
             <div *ngIf="data.category == 'Video'">
               <div class="col">

@@ -11,7 +11,7 @@ export class RoleGuardService implements CanActivate {
     let userrol;
     let auth:boolean;
     if (this.auth.isAuthenticated()) {
-      userrol = JSON.parse(localStorage.getItem('rol'));
+      userrol = JSON.parse(localStorage.getItem('token')).rol;
     }
     if (!this.auth.isAuthenticated() || userrol != expectedRole) {
       console.log('guard',expectedRole,userrol)

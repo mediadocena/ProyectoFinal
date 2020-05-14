@@ -90,7 +90,7 @@ export class PostformComponent implements OnInit {
       Swal.fire({
         icon:'error',
         title: 'Error',
-        html: 'Ya existe un post con ese titulo',
+        html: 'Error al subir archivo, puede ser que el archivo sea demasiado pesado',
         confirmButtonText: 'Aceptar'
       })
     });

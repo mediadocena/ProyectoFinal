@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/Services/post.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,14 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor(private post:PostService,private route: ActivatedRoute) { }
+  constructor(private post:PostService,private user:UserService,private route: ActivatedRoute) { }
   data:any;
   index:number = undefined;
   fulldata;
-  username = JSON.parse(localStorage.getItem('token')).name;
-  icon = JSON.parse(localStorage.getItem('token')).icon;
+  username;
+  icon;
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
+    if(this._id == JSON.parse(localStorage.getItem('token'))._id.$oid){
+      this.username = JSON.parse(localStorage.getItem('token')).name;
+      this.icon = JSON.parse(localStorage.getItem('token')).icon;
+    }else{
+      this.user.obtenerUsuarioID(this._id).subscribe((data:any)=>{
+        this.username = data.name;
+        this.icon = data.icon;
+      })
+    }
     this.ObtenerPosts();
   }
   ObtenerPosts(){

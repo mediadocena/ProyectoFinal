@@ -25,7 +25,7 @@ export class UserService {
     return this.http.post(`${api}login`,data);
   }
   public obtenerUsuarioID(id){
-    return this.http.get(`${api}user/`+id)
+    return this.http.get(`${api}userById/`+id)
   }
   public ObtenerUsuarios(){
     return this.http.get(`${api}user`,this.httpOptions)
@@ -53,5 +53,8 @@ export class UserService {
   }
   public UploadUserImg(form){
     return this.http.post(`${api}UploadUserImg`,form,this.httpOptions);
+  }
+  public Eliminar(id){
+    return this.http.delete(`${api}user/${id}`);
   }
 }

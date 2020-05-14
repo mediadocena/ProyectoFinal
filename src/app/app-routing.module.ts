@@ -11,6 +11,8 @@ import { SigninComponent } from './Components/signin/signin.component';
 import { PostComponent } from './Components/post/post.component';
 import { NotverifiedComponent } from './Components/notverified/notverified.component';
 import { VerificarComponent } from './Components/verificar/verificar.component';
+import { CrearAdminComponent } from './Components/crear-admin/crear-admin.component';
+import { RoleGuardService } from './Services/roleguard.service';
 
 
 const routes: Routes = [
@@ -23,6 +25,9 @@ const routes: Routes = [
   {path:'signin',component:SigninComponent},
   {path:'notverified',component:NotverifiedComponent},
   {path:'verify/:id',component:VerificarComponent},
+  {path:'CrearAdmin',component:CrearAdminComponent,canActivate:[RoleGuardService],data: { 
+    expectedRole: 'admin'
+  } },
   {path: '', redirectTo: '/Home',pathMatch: 'full'},
   {
     path        : '**',

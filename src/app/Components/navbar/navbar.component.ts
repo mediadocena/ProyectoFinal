@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
       this.icono = JSON.parse(localStorage.getItem('token')).icon;
       this._id = JSON.parse(localStorage.getItem('token'))._id.$oid;
       this.logged = true;
+      this.rol = JSON.parse(localStorage.getItem('token')).rol;
     }else{
       this.logged = false;
     }
