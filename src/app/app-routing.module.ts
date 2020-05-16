@@ -13,6 +13,7 @@ import { NotverifiedComponent } from './Components/notverified/notverified.compo
 import { VerificarComponent } from './Components/verificar/verificar.component';
 import { CrearAdminComponent } from './Components/crear-admin/crear-admin.component';
 import { RoleGuardService } from './Services/roleguard.service';
+import { SearchComponent } from './Components/search/search.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'Home',component:HomeComponent},
   {path:'addpost',component:PostformComponent,canActivate:[IsloggedService]},
   {path:'post/:id',component:PostComponent},
+  {path:'search',component:SearchComponent},
   {path:'signin',component:SigninComponent},
   {path:'notverified',component:NotverifiedComponent},
   {path:'verify/:id',component:VerificarComponent},

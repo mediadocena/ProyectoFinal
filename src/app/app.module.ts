@@ -27,6 +27,7 @@ import { PostListComponent } from './Components/post-list/post-list.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { CrearAdminComponent } from './Components/crear-admin/crear-admin.component';
+import { SearchComponent } from './Components/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { CrearAdminComponent } from './Components/crear-admin/crear-admin.compon
     NotverifiedComponent,
     VerificarComponent,
     PostListComponent,
-    CrearAdminComponent
+    CrearAdminComponent,
+    SearchComponent
   ],
   imports: [
     TagInputModule,

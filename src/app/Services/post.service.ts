@@ -45,5 +45,8 @@ export class PostService {
   ValidateFiles(filenames){
     return this.httpClient.put(`${api}ValidateFiles`,filenames,this.httpOptions)
   }
+  Search(data){
+    return this.httpClient.post(`${api}search`,data);
+  }
   
 }
