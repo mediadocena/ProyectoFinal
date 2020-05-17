@@ -41,7 +41,7 @@ export class PostComponent implements OnInit {
         case 'Música':
           this.msaapPlaylist = data.archivo;
           break;
-          case 'Dibujo/fotografía':
+          case 'Dibujo-fotografia':
             this.galleryImages = data.archivo;
           break;
           case 'Video':

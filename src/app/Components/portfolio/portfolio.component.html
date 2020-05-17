@@ -35,7 +35,7 @@
     <!-- Grid column -->
     <div class="mb-3 pics all 2 animation">
       <a   routerLink='/post/{{data[i]._id.$oid}}'>
-        <div *ngIf="dat.category=='Dibujo/fotografía'">
+        <div *ngIf="dat.category=='Dibujo-fotografia'">
           <div class="view">
             <img class="img-fluid z-depth-1 rounded" src={{dat.archivo[0].big}} alt="Card image cap">
             <div class="mask flex-center waves-effect waves-light rgba-black-slight">
@@ -44,7 +44,7 @@
           </div>
           
         </div>
-        <div *ngIf="dat.category!='Dibujo/fotografía'">
+        <div *ngIf="dat.category!='Dibujo-fotografia'">
           <div class="view">
             <img class="img-fluid z-depth-1 rounded" src="https://i.etsystatic.com/10919371/r/il/155a7d/1563938723/il_570xN.1563938723_1rmr.jpg" alt="">
             <div class="mask flex-center waves-effect waves-light rgba-black-slight">

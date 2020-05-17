@@ -7,7 +7,7 @@
     <p class="h4" (click)="AuthorPage()">{{data.authorname}}</p>
   </div>
     <div class="row " style="justify-content: center;">
-            <div *ngIf="data.category == 'Dibujo/fotografía'">
+            <div *ngIf="data.category == 'Dibujo-fotografia'">
                 <div class="media">
                   <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
                   </div>
@@ -49,8 +49,10 @@
       <div class="col-4">
         <h2>{{data.titulo}}</h2>
         <p>{{data.texto}}</p>
-        <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
-      <button class="btn btn-primary" (click)="Puntuar()">Puntuar</button>
+      <div *ngIf="data.autor != iduser">
+          <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+          <button class="btn btn-primary" (click)="Puntuar()">Puntuar</button>
+      </div>
     </div>
     <div class="col-4">
     </div>

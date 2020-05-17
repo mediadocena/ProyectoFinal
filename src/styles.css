@@ -78,5 +78,9 @@ body {
     }
     .homecard{
         width: 100%;
-        height: auto;
+        max-height: 167.91px;
+    }
+    .sameCard{
+        -ms-flex: 1; /* IE 10 */
+        flex: 1;
     }

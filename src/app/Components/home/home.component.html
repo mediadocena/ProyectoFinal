@@ -12,16 +12,16 @@
 
     <div class="col-lg-12 col-sm-5 col-md-10">
       <div class="row">
-          <div class="col-lg-4 col-md-10" *ngFor="let item of data; index as i">
+        <div class="col-lg-4 col-md-10" *ngFor="let item of data; index as i">
       <!-- Grid column -->
       <!--Card Primary-->
       <a href="/post/{{item._id.$oid}}">
-      <div class="card light-blue darken-1 text-center z-depth-2">
+      <div class="card light-blue darken-1 text-center z-depth-2 h-100">
        <!--Card image-->
-       <div class="view homecard">
-            <div *ngIf="item.category == 'Dibujo/fotografía'">
+       <div class="view">
+            <div *ngIf="item.category == 'Dibujo-fotografia'">
               <div class="media">
-                <img  class="card-img-top" alt ="{{item.archivo}}"src={{item.archivo[0].big}} class="img-fluid">
+                <img  class="img-fluid card-img-top homecard" alt ="" src={{item.archivo[0].big}}>
                 </div>
             </div>
         </div>

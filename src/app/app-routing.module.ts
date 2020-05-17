@@ -14,6 +14,7 @@ import { VerificarComponent } from './Components/verificar/verificar.component';
 import { CrearAdminComponent } from './Components/crear-admin/crear-admin.component';
 import { RoleGuardService } from './Services/roleguard.service';
 import { SearchComponent } from './Components/search/search.component';
+import { CategoriaComponent } from './Components/categoria/categoria.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'search',component:SearchComponent},
   {path:'signin',component:SigninComponent},
   {path:'notverified',component:NotverifiedComponent},
+  {path:'categoria/:category',component:CategoriaComponent},
   {path:'verify/:id',component:VerificarComponent},
   {path:'CrearAdmin',component:CrearAdminComponent,canActivate:[RoleGuardService],data: { 
     expectedRole: 'admin'

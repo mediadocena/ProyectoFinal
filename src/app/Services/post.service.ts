@@ -48,5 +48,11 @@ export class PostService {
   Search(data){
     return this.httpClient.post(`${api}search`,data);
   }
+  GetMostValored(){
+    return this.httpClient.get(`${api}mostvalored`);
+  }
+  GetByCategory(cat){
+    return this.httpClient.get(`${api}category/${cat}`);
+  }
   
 }

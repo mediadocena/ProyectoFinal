@@ -41,7 +41,7 @@ export class PortfolioComponent implements OnInit {
   Imagenes(){
     this.data = []
     this.fulldata.forEach(element => {
-      if(element.category == 'Dibujo/fotografía'){
+      if(element.category == 'Dibujo-fotografia'){
         this.data.push(element);
       }
     });

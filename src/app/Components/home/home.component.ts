@@ -19,8 +19,9 @@ export class HomeComponent implements OnInit {
   }
 
   ObtenerPosts(){
-    this.post.GetAll().subscribe((data:any)=>{
+    this.post.GetMostValored().subscribe((data:any)=>{
       this.data = data;
+      console.log(this.data)
       this.fulldata = data; 
     })
   }
