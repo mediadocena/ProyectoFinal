@@ -12,11 +12,17 @@ export class CategoriaComponent implements OnInit {
   constructor(private post:PostService,private route:ActivatedRoute) { }
   data;
   category = this.route.snapshot.paramMap.get("category");
-  
+  pageSize = 5;
+  p;
+  total;
   ngOnInit() {
     this.post.GetByCategory(this.category).subscribe((data)=>{
       this.data = data;
     })
+  }
+  pageChanged($event){
+    console.log($event)
+    this.p= $event;
   }
 
 }

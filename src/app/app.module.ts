@@ -29,6 +29,7 @@ import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { CrearAdminComponent } from './Components/crear-admin/crear-admin.component';
 import { SearchComponent } from './Components/search/search.component';
 import { CategoriaComponent } from './Components/categoria/categoria.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { CategoriaComponent } from './Components/categoria/categoria.component';
     CategoriaComponent
   ],
   imports: [
+    NgxPaginationModule,
     TagInputModule,
     BarRatingModule,
     BrowserModule,
