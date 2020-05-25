@@ -18,10 +18,12 @@ export class PortfolioComponent implements OnInit {
   icon;
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
-    if(this._id == JSON.parse(localStorage.getItem('token'))._id.$oid){
-      this.username = JSON.parse(localStorage.getItem('token')).name;
-      this.icon = JSON.parse(localStorage.getItem('token')).icon;
-    }else{
+    if(localStorage.getItem('token')){
+      if(this._id == JSON.parse(localStorage.getItem('token'))._id.$oid){
+        this.username = JSON.parse(localStorage.getItem('token')).name;
+        this.icon = JSON.parse(localStorage.getItem('token')).icon;
+      }
+  }else{
       this.user.obtenerUsuarioID(this._id).subscribe((data:any)=>{
         this.username = data.name;
         this.icon = data.icon;

@@ -112,18 +112,22 @@ export class PostComponent implements OnInit {
     }
   }
   Comentar(){
-    this.data.coments.push({
-      "id":this.iduser,
-      "coment":this.comentario,
-      "icono":JSON.parse(localStorage.getItem("token")).icon,
-      "name":JSON.parse(localStorage.getItem("token")).name
-    })
-    this.post.Update(this.data).subscribe((data)=>{
-      console.log(data);
-      this.comentario='';
-    },(err)=>{
-      console.log(err);
-    })
+    if(this.comentario == '' || this.comentario == undefined || this.comentario == null){
+      return false;
+    }else{
+      this.data.coments.push({
+        "id":this.iduser,
+        "coment":this.comentario,
+        "icono":JSON.parse(localStorage.getItem("token")).icon,
+        "name":JSON.parse(localStorage.getItem("token")).name
+      })
+      this.post.Update(this.data).subscribe((data)=>{
+        console.log(data);
+        this.comentario='';
+      },(err)=>{
+        console.log(err);
+      })
+    }
   }
   Eliminar(id){
     this.data.coments.splice(id,1);

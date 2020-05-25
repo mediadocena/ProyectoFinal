@@ -84,3 +84,8 @@ body {
         -ms-flex: 1; /* IE 10 */
         flex: 1;
     }
+    .musicIcon{
+        max-width: 361px;
+        max-height: 200px;
+    
+    }
