@@ -20,21 +20,18 @@
                 </div>
             </div>
             <div class="card-body">
-            <div *ngIf="item.category == 'Música'">
-                <div class="media homecard">
-                <audio controls>
-                    <source src={{item.archivo[0].link}} type="audio/ogg">
-                Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-            <div *ngIf="item.category == 'Video'">
-                <div class="media homecard">
-                <video width="250" height="140" controls >
-                    <source src={{item.archivo[0].link}} type="video/mp4">
-                </video>
-                </div>
-            </div>
+                <div *ngIf="item.category == 'Música'">
+                    <div class="media">
+                      <img  class=" img-fluid card-img-top homecard"src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Noun_project_-_Music_notes.svg/1200px-Noun_project_-_Music_notes.svg.png" alt="">
+                      </div>
+                  </div>
+                  <div *ngIf="item.category == 'Video'">
+                    <div class="media homecard">
+                      <video class="img-fluid card-img-top homecard" width="250" height="140" controls >
+                        <source src={{item.archivo[0].link}} type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
             <br>
             <h3 class="text-uppercase font-weight-bold white-text mt-2 mb-3"><strong>{{item.titulo}}</strong></h3>
             <p class="white-text mb-0">{{item.texto}} </p>

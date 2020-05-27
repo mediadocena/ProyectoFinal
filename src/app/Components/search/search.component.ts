@@ -12,11 +12,17 @@ export class SearchComponent implements OnInit {
   searchArgs;
   filter = '';
   data = [];
+  pageSize= 10;
+  p;
+  total;
 
   ngOnInit() {
 
   }
-
+pageChanged($event){
+    console.log($event)
+    this.p= $event;
+  }
   Buscar(){
     let searchdata={
       'args':this.searchArgs,
