@@ -22,6 +22,7 @@ export class PostformComponent implements OnInit {
   tags;
   filenames:any[] = [];
   fileData = new FormData();
+  files:any[]=[]
   constructor(private formBuilder:FormBuilder,private post:PostService) { 
   }
   ngOnInit() {
@@ -29,10 +30,12 @@ export class PostformComponent implements OnInit {
   }
   onFileSelect(event) {
     if (event.target.files.length > 0) {
+      this.files=[]
       const file = event.target.files;
       let count = 0;
       for (let fil of file){
         this.fileData.append(`file${count}`,fil);
+        this.files.push(fil);
         console.log(fil);
         console.log(this.filenames)
         count++;
@@ -40,16 +43,56 @@ export class PostformComponent implements OnInit {
     
     }
   }
+  ValidateFiles(){
+    let  re = /(?:\.([^.]+))?$/;
+    
+    if(this.uploadForm.get('category').value=='Video'){
+      for(let fil of this.files){
+        console.log(fil.name.substr(fil.name.lastIndexOf('.') + 1))
+        if(fil.name.substr(fil.name.lastIndexOf('.') + 1) != 'mp4'){
+          return false;
+        }
+      }
+    }
+    if(this.uploadForm.get('category').value=='Dibujo-fotografia'){
+      for(let fil of this.files){
+        console.log(fil.name.substr(fil.name.lastIndexOf('.') + 1))
+        let ext = fil.name.substr(fil.name.lastIndexOf('.') + 1);
+        if(ext != 'png' || ext !='jpg' || ext!='jpeg'){
+          return false;
+        }
+      }
+    }
+    if(this.uploadForm.get('category').value=='Música'){
+      for(let fil of this.files){
+        console.log(fil.name.substr(fil.name.lastIndexOf('.') + 1))
+        let ext = fil.name.substr(fil.name.lastIndexOf('.') + 1);
+        if(ext != 'mp3'){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
   onSubmit() {
     if( 
         this.uploadForm.get('titulo').value == '' ||
-        this.uploadForm.get('text').value == ''){
+        this.uploadForm.get('text').value == ''||
+        this.uploadForm.get('category').value == ''){
 
        console.log(this.uploadForm.get('file').value)
        
       return Swal.fire('Error','Por favor, rellene todos los campos','error');
       
     }
+    if(this.ValidateFiles() == false){
+      return  Swal.fire({
+        icon:'error',
+        title: 'Error',
+        html: 'la categoría no corresponde con los archivos subidos',
+        confirmButtonText: 'Aceptar'
+      })
+    }else{
     const formData = new FormData();
     formData.append('titulo', this.uploadForm.get('titulo').value);
     formData.append('text', this.uploadForm.get('text').value);
@@ -60,6 +103,8 @@ export class PostformComponent implements OnInit {
     this.fileData.append('Autor',this.uploadForm.get('author').value);
     this.fileData.append('PostName',this.uploadForm.get('titulo').value);
     this.fileData.append('category',this.uploadForm.get('category').value);
+
+      console.log(this.fileData)
     this.post.UploadFile(this.fileData).subscribe((data:any)=>{
       this.filenames = data;
       
@@ -96,5 +141,5 @@ export class PostformComponent implements OnInit {
     });
     
   }
-
+}
 }
