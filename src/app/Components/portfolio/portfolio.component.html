@@ -2,12 +2,34 @@
     <!-- Section -->
     
     <section>
-  
+      <div class="backwhite">
+      <div *ngIf="editmode == false">
+        <button class="btn btn-success" (click)="editmode = true"><i class="far fa-edit"></i></button>
+      </div>
+      <div *ngIf="editmode == true">
+        <button class="btn btn-success" (click)="editar()"><i class="fas fa-check"></i></button>
+      </div>
+      
+
       <h6 class="font-weight-bold text-center dark-grey-text text-uppercase small mb-4">portfolio</h6>
       <h3 class="font-weight-bold text-center black-text pb-2">{{username}}</h3>
       <div class="text-center rounded-circle">
         <img class="icon rounded-circle" src="{{icon}}" alt="">
       </div>
+      <div *ngIf="editmode == false">
+        <h4 class="font-weight-bold text-center black-text  small mb-4"><i class="fas fa-university"></i> {{ titulos}}</h4>  
+
+        <h4 class="font-weight-bold text-center black-text  small mb-4"><i class="fas fa-book-open"></i> {{ description}}</h4>
+      </div>
+      <div *ngIf="editmode == true">
+        <form class="md-form">
+          <i class="fas fa-university"></i> <textarea class="md-textarea form-control font-weight-bold text-center black-text  small mb-4" rows="1"  placeholder="titulos,especialidades..." [(ngModel)]="titulos" [ngModelOptions]="{standalone: true}"></textarea>
+        
+          <i class="fas fa-book-open"></i> <textarea class="md-textarea form-control font-weight-bold text-center black-text  small mb-4" rows="1"  placeholder="descripcion..." [(ngModel)]="description" [ngModelOptions]="{standalone: true}"></textarea>
+        </form>
+      </div>
+      <br>
+    </div>
       <hr class="w-header my-4">
   
       <!-- Grid row -->
@@ -22,6 +44,7 @@
           <button type="button" class="btn btn-flat btn-lg btn-black m-0 px-3 py-1 filter" data-rel="1" (click)="Videos()">Videos</button>
           <p class="font-weight-bold mb-0 px-1 py-1">/</p>
           <button type="button" class="btn btn-flat btn-lg btn-black m-0 px-3 py-1 filter" data-rel="2" (click)="Musica()">Musica</button>
+       
   
         </div>
         <!-- Grid column -->

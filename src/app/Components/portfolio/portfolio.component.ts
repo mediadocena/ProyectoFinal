@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/Services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-portfolio',
@@ -15,16 +16,21 @@ export class PortfolioComponent implements OnInit {
   index:number = undefined;
   fulldata;
   username;
+  description;
+  titulos;
   icon;
   pageSize= 9;
   p;
   total;
+  editmode:boolean = false;
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
     if(localStorage.getItem('token')){
       if(this._id == JSON.parse(localStorage.getItem('token'))._id.$oid){
         this.username = JSON.parse(localStorage.getItem('token')).name;
         this.icon = JSON.parse(localStorage.getItem('token')).icon;
+        this.description = JSON.parse(localStorage.getItem('token')).banner;
+        this.titulos = JSON.parse(localStorage.getItem('token')).category;
       }
   }else{
       this.user.obtenerUsuarioID(this._id).subscribe((data:any)=>{
@@ -74,5 +80,16 @@ export class PortfolioComponent implements OnInit {
   pageChanged($event){
     console.log($event)
     this.p= $event;
+  }
+  editar(){
+  let user = JSON.parse(localStorage.getItem('token'));
+  user.banner = this.description;
+  user.category = this.titulos;
+    this.user.Update(user).subscribe((data)=>{
+      this.editmode = false;
+      localStorage.removeItem('token');
+      localStorage.setItem('token',JSON.stringify(user));
+      Swal.fire('OK','Descripción modificada','success');
+    })
   }
 }
