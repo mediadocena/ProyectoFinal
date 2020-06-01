@@ -91,7 +91,7 @@
         <div class="col-lg-9">
           <p>{{com.coment}}</p>
         </div>
-        <div class="col-lg-2" *ngIf="com.id == iduser">
+        <div class="col-lg-2" *ngIf="com.id == iduser || this.rol == 'admin'">
           <button class="btn btn-danger" type="button" (click)="Eliminar(i)">Eliminar</button>
         </div>
       </div>
