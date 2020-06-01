@@ -16,6 +16,9 @@ export class PortfolioComponent implements OnInit {
   fulldata;
   username;
   icon;
+  pageSize= 9;
+  p;
+  total;
   _id = this.route.snapshot.paramMap.get("id");
   ngOnInit() {
     if(localStorage.getItem('token')){
@@ -67,5 +70,9 @@ export class PortfolioComponent implements OnInit {
 
   Reset(){
     this.data = this.fulldata;
+  }
+  pageChanged($event){
+    console.log($event)
+    this.p= $event;
   }
 }

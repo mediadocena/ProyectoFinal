@@ -1,6 +1,6 @@
 <br>
 <div class="container backwhite rounded">
-  <div *ngIf="data.autor == iduser">
+  <div *ngIf="data.autor == iduser || this.rol == 'admin'">
     <button class="btn btn-danger" (click)="ElimModal()">X</button>
   </div>
   <div class="chip">
@@ -70,7 +70,10 @@
     </div>
     <br>
     <hr>
-    <div *ngFor="let com of data.coments;let i = index">
+    <div *ngFor="let com of data.coments | paginate: { id: 'lista',
+    itemsPerPage: pageSize,
+    currentPage: p,
+    totalItems: total };let i = index">
       <div class="row">
         <div class="col-lg-1">
           <img src="{{com.icono}}" class="rounded-circle z-depth-0 coment-icon"
@@ -94,7 +97,21 @@
       </div>
       <hr>
 </div>
+<br>
+<div class="backwhite">
+  <pagination-controls  id="lista"
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        maxSize="9"
+        directionLinks="true"
+        autoHide="true"
+        responsive="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
 </div>
 <br>
-
-

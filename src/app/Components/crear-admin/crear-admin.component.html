@@ -1,6 +1,11 @@
 <br>
 
 <div class="container">
+  <form class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+    aria-label="Search" [(ngModel)]="searchArgs" [ngModelOptions]="{standalone: true}" (change)="Buscar()">
+  </form>
     <table class="table">
         <thead class="black white-text">
           <tr>
@@ -10,10 +15,13 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let usr of users; let i = index;">
+        <tbody *ngFor="let usr of users | paginate: { id: 'lista',
+        itemsPerPage: pageSize,
+        currentPage: p,
+        totalItems: total }; let i = index;">
           <tr class="backwhite">
-            <th scope="row"><h3>{{i}}</h3></th>
-            <td><h3>{{usr.name}}</h3></td>
+            <th scope="row"><h4>{{i}}</h4></th>
+            <td><h4>{{usr.name}}</h4></td>
             <div *ngIf="usr.rol == 'user'">
                 <td><button class="btn btn-primary" (click)="CreateAdmin(usr)">Crear Admin</button></td>
                
@@ -26,4 +34,20 @@
 
         </tbody>
       </table>
+      <br>
+      <div class="backwhite">
+        <pagination-controls  id="lista"
+              (pageChange)="pageChanged($event)"
+              (pageBoundsCorrection)="pageChanged($event)"
+              maxSize="9"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              previousLabel="Previous"
+              nextLabel="Next"
+              screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
+      </div>
 </div>

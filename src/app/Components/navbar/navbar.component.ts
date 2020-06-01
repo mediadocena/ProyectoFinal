@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
     }else{
       this.logged = false;
     }
-    console.log(localStorage.getItem('token'))
   }
   delogin(){
     this.user.Delog().subscribe((data)=>{

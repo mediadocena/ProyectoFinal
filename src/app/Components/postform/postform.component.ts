@@ -44,8 +44,7 @@ export class PostformComponent implements OnInit {
     }
   }
   ValidateFiles(){
-    let  re = /(?:\.([^.]+))?$/;
-    
+    let imgTypes = ['jpg','png','jpeg']
     if(this.uploadForm.get('category').value=='Video'){
       for(let fil of this.files){
         console.log(fil.name.substr(fil.name.lastIndexOf('.') + 1))
@@ -58,7 +57,9 @@ export class PostformComponent implements OnInit {
       for(let fil of this.files){
         console.log(fil.name.substr(fil.name.lastIndexOf('.') + 1))
         let ext = fil.name.substr(fil.name.lastIndexOf('.') + 1);
-        if(ext != 'png' || ext !='jpg' || ext!='jpeg'){
+        if(imgTypes.includes(ext)){
+          return true;
+        }else{
           return false;
         }
       }

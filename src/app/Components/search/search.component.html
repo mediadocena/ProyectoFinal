@@ -65,24 +65,21 @@
           </div>
         </div>
       </div>
-     
+     <br>
+     <div class="backwhite">
+      <pagination-controls  id="lista"
+            (pageChange)="pageChanged($event)"
+            (pageBoundsCorrection)="pageChanged($event)"
+            maxSize="9"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel="Previous"
+            nextLabel="Next"
+            screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+    </div>
 </div>
 <br>
-    <div class="col">
-        <div class="row" style="justify-content: center;">
-            
-            <pagination-controls  id="lista"
-                (pageChange)="pageChanged($event)"
-                (pageBoundsCorrection)="pageChanged($event)"
-                maxSize="9"
-                directionLinks="true"
-                autoHide="true"
-                responsive="true"
-                previousLabel="Previous"
-                nextLabel="Next"
-                screenReaderPaginationLabel="Pagination"
-                screenReaderPageLabel="page"
-                screenReaderCurrentLabel="You're on page">
-            </pagination-controls>
-        </div>
-    </div>

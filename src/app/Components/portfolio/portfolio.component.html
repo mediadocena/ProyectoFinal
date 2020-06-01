@@ -30,13 +30,16 @@
       <!-- Grid row -->
   <!-------------------------------------------------------------------------------------> 
   <!-- Grid row -->
-  <div class="gallery mb-5 h-100" id="gallery">
-    <div *ngFor="let dat of data index as i">
+  <div class="gallery mb-5 " id="gallery">
+    <div *ngFor="let dat of data | paginate: { id: 'lista',
+    itemsPerPage: pageSize,
+    currentPage: p,
+    totalItems: total }; index as i">
     <!-- Grid column -->
-    <div class="mb-3 pics all 2 animation">
+    <div class="mb-3 pics all 2 animation h-100">
       <a   routerLink='/post/{{data[i]._id.$oid}}'>
         <div *ngIf="dat.category=='Dibujo-fotografia'">
-          <div class="view">
+          <div class="view ">
             <img class="img-fluid z-depth-1 rounded" src={{dat.archivo[0].big}} alt="Card image cap">
             <div class="mask flex-center waves-effect waves-light rgba-black-slight">
               <p class="white-text"><b>{{dat.titulo}}</b></p>
@@ -62,5 +65,20 @@
   </div>
     </section>
     <!-- Section -->
-  
+  <br>
+  <div class="backwhite">
+    <pagination-controls  id="lista"
+          (pageChange)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+          maxSize="9"
+          directionLinks="true"
+          autoHide="true"
+          responsive="true"
+          previousLabel="Previous"
+          nextLabel="Next"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page">
+  </pagination-controls>
+  </div>
   </div>

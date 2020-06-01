@@ -15,11 +15,15 @@ export class PostComponent implements OnInit {
   data;
   rate;
   auth = false;
+  rol;
   comentario;
   iduser;
   srcVideo;
   VideoActual;
   tituloActual;
+  pageSize= 10;
+  p;
+  total;
   points:any[];
   _id = this.route.snapshot.paramMap.get("id");
   galleryOptions: NgxGalleryOptions[] = [{ "thumbnails": false},
@@ -32,7 +36,9 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem("token")){
       this.auth = true;
-      this.iduser = JSON.parse(localStorage.getItem('token'))._id.$oid;
+      let token = JSON.parse(localStorage.getItem('token'));
+      this.rol = token.rol
+      this.iduser = token._id.$oid;
     }
     this.post.GetPost(this._id).subscribe((data:any)=>{
       this.data = data;
@@ -76,6 +82,10 @@ export class PostComponent implements OnInit {
     },(err)=>{
       this.router.navigate(['Home']);
     });
+  }
+  pageChanged($event){
+    console.log($event)
+    this.p= $event;
   }
   Puntuar(){
     if(localStorage.getItem('token'))

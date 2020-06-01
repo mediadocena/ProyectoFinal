@@ -12,7 +12,7 @@ export class CategoriaComponent implements OnInit {
   constructor(private post:PostService,private route:ActivatedRoute) { }
   data;
   category = this.route.snapshot.paramMap.get("category");
-  pageSize = 5;
+  pageSize = 6;
   p;
   total;
   ngOnInit() {

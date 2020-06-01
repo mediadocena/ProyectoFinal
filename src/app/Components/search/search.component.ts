@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   searchArgs;
   filter = '';
   data = [];
-  pageSize= 10;
+  pageSize= 6;
   p;
   total;
 

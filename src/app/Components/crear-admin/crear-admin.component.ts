@@ -10,11 +10,37 @@ import Swal from 'sweetalert2';
 export class CrearAdminComponent implements OnInit {
 
   constructor(private user:UserService) { }
-  users;
+  users:any[];
+  data;
+  searchArgs:string;
+  pageSize = 2;
+  p;
+  total;
   ngOnInit() {
-    this.user.ObtenerUsuarios().subscribe((data)=>{
+    this.user.ObtenerUsuarios().subscribe((data:any)=>{
       this.users = data;
+      this.data = data;
     })
+  }
+  Buscar(){
+    if(this.searchArgs == '' || this.searchArgs == null){
+      this.users = this.data;
+      return false;
+    }else{
+      this.users = []
+    for (let usr of this.data){
+      let nombre:string = usr.name
+      console.log('jander;'+nombre.toLowerCase().includes(this.searchArgs.toLowerCase()))
+      if(nombre.toLowerCase().includes(this.searchArgs.toLowerCase()) == true){
+        console.log('iguales')
+        this.users.push(usr);
+      }
+    }
+  }
+  }
+  pageChanged($event){
+    console.log($event)
+    this.p= $event;
   }
   CreateAdmin(usr){
     let user = usr;
