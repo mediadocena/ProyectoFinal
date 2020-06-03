@@ -26,7 +26,7 @@ export class PortfolioComponent implements OnInit {
   _id = this.route.snapshot.paramMap.get("id");
   actualid= JSON.parse(localStorage.getItem('token'))._id.$oid
   ngOnInit() {
-    if(localStorage.getItem('token') && this._id == JSON.parse(localStorage.getItem('token'))._id.$oid){
+    if(localStorage.getItem('token') && this._id == this.actualid){
         this.username = JSON.parse(localStorage.getItem('token')).name;
         this.icon = JSON.parse(localStorage.getItem('token')).icon;
         this.description = JSON.parse(localStorage.getItem('token')).banner;
