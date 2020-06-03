@@ -3,10 +3,10 @@
     
     <section>
       <div class="backwhite">
-      <div *ngIf="editmode == false">
+      <div *ngIf="editmode == false && _id == actualid">
         <button class="btn btn-success" (click)="editmode = true"><i class="far fa-edit"></i></button>
       </div>
-      <div *ngIf="editmode == true">
+      <div *ngIf="editmode == true && _id == actualid">
         <button class="btn btn-success" (click)="editar()"><i class="fas fa-check"></i></button>
       </div>
       
@@ -17,12 +17,12 @@
         <img class="icon rounded-circle" src="{{icon}}" alt="">
       </div>
       <br>
-      <div *ngIf="editmode == false">
+      <div *ngIf="editmode == false || _id != actualid">
         <h4 class="font-weight-bold text-center black-text  small mb-4"><i class="fas fa-university"></i> {{ titulos}}</h4>  
 
         <h4 class="font-weight-bold text-center black-text  small mb-4"><i class="fas fa-book-open"></i> {{ description}}</h4>
       </div>
-      <div *ngIf="editmode == true">
+      <div *ngIf="editmode == true && _id == actualid">
         <form class="md-form">
           <i class="fas fa-university"></i> <textarea class="md-textarea form-control font-weight-bold text-center black-text  small mb-4" rows="1"  placeholder="titulos,especialidades..." [(ngModel)]="titulos" [ngModelOptions]="{standalone: true}"></textarea>
         
