@@ -151,6 +151,7 @@ export class PostComponent implements OnInit {
     console.log(this.data._id.$oid)
     this.post.Delete(this.data._id.$oid).subscribe((data)=>{
       this.post.DeleteFile({'files':this.data.archivo}).subscribe((data)=>{
+        this.router.navigate(['Home']);
       })
       console.log(data);
     },(err)=>{
@@ -176,7 +177,6 @@ export class PostComponent implements OnInit {
           'Se ha eliminado el post',
           'success'
         )
-        this.router.navigate(['Home']);
       }
     })
   }
