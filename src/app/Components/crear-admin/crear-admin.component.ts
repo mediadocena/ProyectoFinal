@@ -13,7 +13,7 @@ export class CrearAdminComponent implements OnInit {
   users:any[];
   data;
   searchArgs:string;
-  pageSize = 2;
+  pageSize = 10;
   p;
   total;
   ngOnInit() {
