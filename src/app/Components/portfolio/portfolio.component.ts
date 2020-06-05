@@ -39,6 +39,8 @@ export class PortfolioComponent implements OnInit {
       this.user.obtenerUsuarioID(this._id).subscribe((data:any)=>{
         this.username = data.name;
         this.icon = data.icon;
+        this.description = data.banner;
+        this.titulos = data.category;
       })
     }
     this.ObtenerPosts();
