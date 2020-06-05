@@ -11,7 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor(private post:PostService,private user:UserService,private route: ActivatedRoute) { }
+  constructor(private post:PostService,private user:UserService,private route: ActivatedRoute) {
+    if(localStorage.getItem('token')){
+      this.actualid=  JSON.parse(localStorage.getItem('token'))._id.$oid;
+    }
+   }
   data:any;
   index:number = undefined;
   fulldata;
@@ -24,7 +28,7 @@ export class PortfolioComponent implements OnInit {
   total;
   editmode:boolean = false;
   _id = this.route.snapshot.paramMap.get("id");
-  actualid= JSON.parse(localStorage.getItem('token'))._id.$oid
+  actualid;
   ngOnInit() {
     if(localStorage.getItem('token') && this._id == this.actualid){
         this.username = JSON.parse(localStorage.getItem('token')).name;
