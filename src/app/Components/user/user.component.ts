@@ -3,6 +3,7 @@ import { UserService } from 'src/app/Services/user.service';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { api } from 'src/app/Const/const';
+import { PostService } from 'src/app/Services/post.service';
 
 @Component({
   selector: 'app-user',
@@ -11,8 +12,9 @@ import { api } from 'src/app/Const/const';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private user:UserService,private formBuilder:FormBuilder) { }
+  constructor(private user:UserService,private formBuilder:FormBuilder,private post:PostService) { }
   data;
+  oldname;
   uploadForm:FormGroup;
   ngOnInit() {
     this.GetAll();
@@ -24,6 +26,7 @@ export class UserComponent implements OnInit {
 
   GetAll(){
     this.data = JSON.parse(localStorage.getItem('token'));
+    this.oldname = this.data.name;
   }
   async CambiarNick(){
     const { value: nick } = await Swal.fire({
@@ -41,9 +44,14 @@ export class UserComponent implements OnInit {
       this.data.name = nick;
       this.user.Update(this.data).subscribe((data)=>{
         localStorage.setItem('token',JSON.stringify(this.data));
+        let dat = {
+          'newname':this.data.name,
+          'oldname':this.oldname
+        }
+        this.post.UpdateAuthorname(dat).subscribe();
         Swal.fire(`Tu nuevo nick es: ${nick}`,'success');
       },(err)=>{
-        Swal.fire('Eror al cambiar nick','error');
+        Swal.fire('Error al cambiar nick','error');
       })
       
     }
