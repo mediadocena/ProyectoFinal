@@ -10,9 +10,10 @@ import { UserService } from 'src/app/Services/user.service';
 export class VerificarComponent implements OnInit {
 
   constructor(public router: Router,private route: ActivatedRoute,private user:UserService) { }
-  
+  id;
   ngOnInit() {
-    if (localStorage.getItem('token')){
+    this.id = this.route.snapshot.paramMap.get('id')
+    if (localStorage.getItem('token') && JSON.parse(localStorage.getItem('token'))._id.$oid == this.id){
       let verified = JSON.parse(localStorage.getItem('token')).verified;
       if(verified == 'true'){
       this.router.navigate(['/Home']);
